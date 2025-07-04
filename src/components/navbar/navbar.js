@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import './navbar.css';
 
 const Navbar = () => {
@@ -38,7 +39,16 @@ const Navbar = () => {
 
     return (
         <div className="header-container">
-            <div className="logo" onClick={() => router.push('/')}>Video360 Studio</div>
+            <div className="logo" onClick={() => router.push('/')}>
+                <Image 
+                    src="/images/slider/logo1.png" 
+                    alt="Video360 Studio" 
+                    width={180}
+                    height={60}
+                    priority
+                    className="logo-image"
+                />
+            </div>
             
             {/* Mobile menu overlay */}
             {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)}></div>}

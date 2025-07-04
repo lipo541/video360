@@ -14,7 +14,7 @@ export const Slider = () => {
     
     const sliderData = [
         {
-            image: "https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
+            image: "https://res.cloudinary.com/dgsemkiaf/image/upload/v1751641372/360slider1_qpvz6a.jpg",
             fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
             heading: "360° Matrix Shot გადაღება",
             subheading: "პროფესიონალური 360° bullet-time ეფექტი - მიღებთ წრიულად მბრუნავი კამერით უნიკალურ ვიდეოს",

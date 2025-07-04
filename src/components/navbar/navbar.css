@@ -26,12 +26,28 @@
         max-width: 1800px;
         padding: 18px 50px;
     }
+    
+    .logo {
+        height: 70px;
+    }
+    
+    .logo-image {
+        max-height: 60px;
+    }
 }
 
 @media (min-width: 1920px) {
     .header-container {
         max-width: 2200px;
         padding: 18px 80px;
+    }
+    
+    .logo {
+        height: 80px;
+    }
+    
+    .logo-image {
+        max-height: 70px;
     }
 }
 
@@ -40,18 +56,23 @@
 }
 
 .logo {
-    font-size: 1.7rem;
-    font-weight: 700;
-    font-family: var(--font-roboto);
-    color: #f7fafc;
-    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    height: 60px;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .logo:hover {
-    transform: scale(1.03);
-    color: #38b2ac;
+    transform: scale(1.05);
+}
+
+.logo-image {
+    height: auto;
+    max-height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
 }
 
 .menu {
@@ -185,5 +206,14 @@
         display: block;
         z-index: 10000;
         position: relative;
+    }
+
+    /* Mobile logo sizing */
+    .logo {
+        height: 50px;
+    }
+    
+    .logo-image {
+        max-height: 40px;
     }
 }

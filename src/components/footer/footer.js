@@ -16,7 +16,7 @@ const Footer = () => {
                         <li><Link href="/services">Matrix Shot ეფექტი</Link></li>
                         <li><Link href="/about">ღონისძიების ფოტო-ზონა</Link></li>
                         <li><Link href="/contact">ღირებულება და პაკეტები</Link></li>
-                        <li><Link href="/contact">დაგვიკავშირდით</Link></li>
+                        <li><Link href="/contact">კონტაქტები</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
@@ -28,8 +28,8 @@ const Footer = () => {
                     </ul>
                 </div>
                 <div className="footer-section">
-                    <h4>ნახეთ ჩვენი ნამუშევრები</h4>
-                    <p>მიიღეთ ინსპირაცია ჩვენი 360° ვიდეოებიდან და განახლებების შესახებ ინფორმაცია.</p>
+                    <h4>გაიცანით ჩვენი ლოკაციის მენეჯერები</h4>
+                    <p>თქვენი ივენთებისა და ღონისძებებისათვის  აირჩიეთ სასურველი ივენთის მენეჯერი.</p>
                     <form>
                         <input type="email" placeholder="შეიყვანეთ თქვენი ელ.ფოსტა" />
                         <button type="submit">გამოწერა</button>
