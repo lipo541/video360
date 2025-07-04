@@ -1,0 +1,16 @@
+/* Layout CSS */
+.layout-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.layout-container main {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}

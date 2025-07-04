@@ -1,0 +1,48 @@
+/* Services Page Styles */
+.services-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-container h1 {
+  color: #1a365d;
+  margin-bottom: 1rem;
+}
+
+.services-content {
+  margin-top: 2rem;
+}
+
+.service-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.service-item h2 {
+  color: #1a365d;
+  margin-bottom: 1rem;
+}
+
+.service-item p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* For large screens (23+ inch monitors) */
+@media (min-width: 1440px) {
+  .services-container {
+    max-width: 1800px;
+    padding: 2rem 3rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .services-container {
+    max-width: 2200px;
+    padding: 2rem 4rem;
+  }
+}

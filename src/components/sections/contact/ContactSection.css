@@ -1,0 +1,60 @@
+/* Contact Section Styles */
+.contact-section {
+    background-color: var(--primary-color, #1e88e5);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-lg, 4rem);
+    border-radius: var(--border-radius, 8px);
+    margin-bottom: var(--spacing-lg, 4rem);
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.phone-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    color: var(--primary-color, #1e88e5);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.phone-button svg {
+    margin-right: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+.phone-button:hover {
+    transform: scale(1.1);
+    background-color: #f4f4f4;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .contact-content h2 {
+        font-size: 2rem;
+    }
+    
+    .phone-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}

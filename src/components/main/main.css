@@ -1,0 +1,350 @@
+/* Global styles and variables */
+:root {
+    --primary-color: #1e88e5;
+    --secondary-color: #ffa726;
+    --accent-color: #ff5252;
+    --dark-bg: #263238;
+    --light-bg: #f5f5f5;
+    --text-dark: #212121;
+    --text-light: #ffffff;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-roboto);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* For large screens (23+ inch monitors) */
+@media (min-width: 1440px) {
+    .main-container {
+        max-width: 1800px;
+        padding: 2rem 3rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .main-container {
+        max-width: 2200px;
+        padding: 2rem 4rem;
+    }
+}
+
+/* Common section styles */
+section {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed);
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+.section-title {
+    position: relative;
+    font-size: 2.2rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    color: var(--dark-bg);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 80px;
+    background-color: var(--primary-color);
+    margin: 0.8rem auto;
+    border-radius: 2px;
+}
+
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.service-card {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+    border-bottom: 3px solid transparent;
+    text-align: center;
+}
+
+.service-card:hover {
+    border-bottom: 3px solid var(--primary-color);
+    transform: translateY(-10px);
+}
+
+.service-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.learn-more {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.learn-more:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+}
+
+/* Safety Section */
+.safety-section {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+}
+
+.safety-section .section-title {
+    color: white;
+}
+
+.safety-section .section-title::after {
+    background-color: var(--secondary-color);
+}
+
+.safety-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.safety-point {
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed);
+}
+
+.safety-point:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.safety-point h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.8rem;
+}
+
+/* Hiring Section */
+.hiring-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.hiring-card {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--accent-color);
+    transition: all var(--transition-speed);
+}
+
+.hiring-card:hover {
+    transform: scale(1.03);
+}
+
+.hiring-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.contact-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    margin-top: 1rem;
+}
+
+.contact-btn:hover {
+    background-color: #e53935;
+    transform: translateX(5px);
+}
+
+/* Social Media Section */
+.social-section {
+    text-align: center;
+    background-color: white;
+}
+
+.social-section p {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-md);
+    color: #666;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.social-link svg {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.facebook {
+    background-color: #1877f2;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.tiktok {
+    background-color: #000;
+}
+
+.social-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.phone-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.phone-button svg {
+    margin-right: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+.phone-button:hover {
+    transform: scale(1.1);
+    background-color: #f4f4f4;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-grid,
+    .safety-points,
+    .hiring-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-icons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .contact-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: var(--spacing-sm);
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .phone-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}

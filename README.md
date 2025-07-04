@@ -1,6 +1,47 @@
-# video360
+# Video360 Studio
 
-360-degree video player Next.js application
+360-degree bullet-time video effects Next.js application
+
+Professional 360° Matrix Shot and slow-motion video effects for events and marketing campaigns.
+
+## Features
+- 360° Bullet-time video effects
+- Professional Matrix Shot photography
+- Event photo booth services
+- Slow motion video capture
+- Instagram-ready content creation
+- Modern, responsive web interface
+- Interactive image slider with touch/swipe support
+- Google Maps integration for location services
+- Optimized performance and SEO
+
+## Project Structure
+```
+src/
+├── app/                    # Next.js app router pages
+│   ├── about/
+│   ├── contact/
+│   ├── services/
+│   └── ...
+├── components/
+│   ├── navbar/            # Navigation component
+│   ├── footer/            # Footer component
+│   ├── slider/            # Image slider with controls
+│   └── sections/          # Page sections (services, social, etc.)
+└── pages/                 # Page components
+    ├── home/
+    ├── about/
+    ├── contact/
+    └── services/
+```
+
+## Technologies Used
+- Next.js 14 (App Router)
+- React 18
+- CSS3 with modern features
+- Google Maps integration
+- Responsive design
+- Touch/swipe gesture support
 
 ## Getting Started
 

@@ -1,0 +1,45 @@
+/* Safety Section Styles */
+.safety-section {
+    background-color: var(--dark-bg, #263238);
+    color: var(--text-light, #ffffff);
+    margin-bottom: var(--spacing-lg, 4rem);
+    padding: var(--spacing-md, 2rem);
+    border-radius: var(--border-radius, 8px);
+    box-shadow: var(--box-shadow, 0 6px 15px rgba(0, 0, 0, 0.1));
+    transition: transform var(--transition-speed, 0.3s);
+}
+
+.safety-section:hover {
+    transform: translateY(-5px);
+}
+
+.safety-section .section-title {
+    color: white;
+}
+
+.safety-section .section-title::after {
+    background-color: var(--secondary-color, #ffa726);
+}
+
+.safety-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.safety-point {
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius, 8px);
+    transition: transform var(--transition-speed, 0.3s);
+}
+
+.safety-point:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.safety-point h3 {
+    color: var(--secondary-color, #ffa726);
+    margin-bottom: 0.8rem;
+}
