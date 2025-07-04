@@ -6,13 +6,21 @@ import './slider.css';
 export const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [imageError, setImageError] = useState({});
-    const [autoPlay, setAutoPlay] = useState(true);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
     const [imageLoaded, setImageLoaded] = useState({});
     const [isTransitioning, setIsTransitioning] = useState(false);
     
     const sliderData = [
+        {
+            type: "video",
+            videoUrl: "https://player.cloudinary.com/embed/?cloud_name=dgsemkiaf&public_id=samples%2Felephants&profile=cld-default&autoplay=true&muted=true&loop=true&controls=false&hideContextMenu=true&fluid=false&crop=fill&quality=auto&aspectRatio=16:9&width=100%25&height=100%25&fit=cover",
+            fallbackImage: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+            fallbackGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
+            heading: "360° ვიდეო - ნახეთ შედეგი",
+            subheading: "რეალური მაგალითი 360° bullet-time ვიდეოსი - ასეთს მიიღებთ ჩვენი სერვისით",
+            cta: "ნახეთ მეტი მაგალითი"
+        },
         {
             image: "https://res.cloudinary.com/dgsemkiaf/image/upload/v1751641372/360slider1_qpvz6a.jpg",
             fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -36,41 +44,23 @@ export const Slider = () => {
         },
     ];
 
-    // Preload all images
+    // Preload all images (skip video slides)
     useEffect(() => {
         sliderData.forEach((slide, index) => {
-            const img = new Image();
-            img.src = slide.image;
-            img.onload = () => handleImageLoad(index);
-            img.onerror = () => handleImageError(index);
+            if (slide.type !== 'video' && slide.image) {
+                const img = new Image();
+                img.src = slide.image;
+                img.onload = () => handleImageLoad(index);
+                img.onerror = () => handleImageError(index);
+            } else if (slide.type === 'video') {
+                // Mark video slides as "loaded" so they show immediately
+                handleImageLoad(index);
+            }
         });
     }, []);
 
-    useEffect(() => {
-        if (!autoPlay) return;
-        
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => 
-                prev === sliderData.length - 1 ? 0 : prev + 1
-            );
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [sliderData.length, autoPlay]);
-
-    // Auto-resume autoplay after 10 seconds of inactivity
-    useEffect(() => {
-        if (autoPlay) return;
-        
-        const resumeTimer = setTimeout(() => {
-            setAutoPlay(true);
-        }, 10000); // 10 seconds
-        
-        return () => clearTimeout(resumeTimer);
-    }, [autoPlay, currentSlide]);
-
     const nextSlide = () => {
         if (isTransitioning) return;
-        setAutoPlay(false);
         setIsTransitioning(true);
         setCurrentSlide(currentSlide === sliderData.length - 1 ? 0 : currentSlide + 1);
         setTimeout(() => setIsTransitioning(false), 500);
@@ -78,7 +68,6 @@ export const Slider = () => {
 
     const prevSlide = () => {
         if (isTransitioning) return;
-        setAutoPlay(false);
         setIsTransitioning(true);
         setCurrentSlide(currentSlide === 0 ? sliderData.length - 1 : currentSlide - 1);
         setTimeout(() => setIsTransitioning(false), 500);
@@ -169,7 +158,17 @@ export const Slider = () => {
                     style={{ cursor: touchStart !== null ? 'grabbing' : 'grab' }}
                 >
                     <div className="slider-image">
-                        {imageError[currentSlide] ? (
+                        {sliderData[currentSlide].type === 'video' ? (
+                            <iframe
+                                src={sliderData[currentSlide].videoUrl}
+                                className="slider-video-iframe"
+                                allow="autoplay; fullscreen; encrypted-media; picture-in-picture; camera; microphone"
+                                allowFullScreen
+                                loading="eager"
+                                title="360° ვიდეო მაგალითი"
+                                sandbox="allow-scripts allow-same-origin allow-presentation"
+                            />
+                        ) : imageError[currentSlide] ? (
                             <div 
                                 className="slider-fallback"
                                 style={{ 
@@ -201,6 +200,12 @@ export const Slider = () => {
                             />
                         )}
                         <div className="slider-overlay"></div>
+                        {sliderData[currentSlide].type === 'video' && (
+                            <div className="video-play-indicator">
+                                <div className="play-icon">▶</div>
+                                <span>360° ვიდეო</span>
+                            </div>
+                        )}
                     </div>
                     
                     <div className={`slider-text ${isTransitioning ? 'transitioning' : ''}`}>
@@ -221,7 +226,6 @@ export const Slider = () => {
                                     key={index} 
                                     className={`slider-dot ${index === currentSlide ? "active" : ""}`}
                                     onClick={() => {
-                                        setAutoPlay(false);
                                         setCurrentSlide(index);
                                     }}
                                 ></span>
