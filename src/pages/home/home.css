@@ -1,7 +1,11 @@
 /* Home Page Styles */
 .home-container {
     width: 100%;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .home-content {
@@ -14,6 +18,8 @@
 @media (min-width: 1440px) {
     .home-container {
         max-width: 1800px;
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
     
     .home-content {
@@ -25,6 +31,8 @@
 @media (min-width: 1920px) {
     .home-container {
         max-width: 2200px;
+        padding-left: 4rem;
+        padding-right: 4rem;
     }
     
     .home-content {

@@ -30,23 +30,28 @@ body {
 }
 
 .main-container {
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* For large screens (23+ inch monitors) */
 @media (min-width: 1440px) {
     .main-container {
         max-width: 1800px;
-        padding: 2rem 3rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 }
 
 @media (min-width: 1920px) {
     .main-container {
         max-width: 2200px;
-        padding: 2rem 4rem;
+        padding-left: 4rem;
+        padding-right: 4rem;
     }
 }
 

@@ -1,8 +1,12 @@
 /* Contact Page Styles */
 .contact-container {
+  width: 100%;
   padding: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .contact-container h1 {
@@ -126,7 +130,8 @@
 @media (min-width: 1440px) {
   .contact-container {
     max-width: 1800px;
-    padding: 2rem 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
   
   .contact-content {
@@ -141,7 +146,8 @@
 @media (min-width: 1920px) {
   .contact-container {
     max-width: 2200px;
-    padding: 2rem 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
   
   .contact-content {

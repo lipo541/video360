@@ -160,3 +160,26 @@
     height: 26px;
   }
 }
+/* glass-bridge, narikala, rike-park გვერდების მთავარი wrapper-ები - უნიფიცირებული სტილი */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1800px;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+@media (min-width: 1920px) {
+    .container {
+        max-width: 2200px;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}

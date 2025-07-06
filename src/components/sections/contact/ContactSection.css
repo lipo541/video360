@@ -3,7 +3,7 @@
     background-color: var(--primary-color, #1e88e5);
     color: white;
     text-align: center;
-    padding: var(--spacing-lg, 4rem);
+    padding: 4rem 0;
     border-radius: var(--border-radius, 8px);
     margin-bottom: var(--spacing-lg, 4rem);
 }
@@ -73,4 +73,4 @@
     letter-spacing: 1px;
     color: var(--primary-color, #ffffff);
     cursor: pointer;
-}   
+}

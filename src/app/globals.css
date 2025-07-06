@@ -52,13 +52,30 @@ button {
   cursor: pointer;
 }
 
+/* .container - უნიფიცირებული სტილი ყველა wrapper-სთვის */
 .container {
-  max-width: 2200px;
   width: 100%;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1800px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 2200px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 }
 
 @media (max-width: 700px) {

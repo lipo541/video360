@@ -8,7 +8,7 @@ import './home.css';
 
 const Home = () => {
   return (
-    <main className="home-container">
+    <main className="container">
       <section aria-label="მთავარი სლაიდერი">
         <Slider />
       </section>
