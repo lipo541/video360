@@ -38,35 +38,38 @@ const Navbar = () => {
     };
 
     return (
-        <div className="header-container">
-            <div className="logo" onClick={() => router.push('/')}>
-                <Image 
-                    src="/images/slider/logo1.png" 
-                    alt="Video360 Studio" 
-                    width={180}
-                    height={60}
-                    priority
-                    className="logo-image"
-                />
+        <>
+            <div className="header-container">
+                <div className="logo" onClick={() => router.push('/')}>
+                    <Image 
+                        src="/images/slider/logo1.png" 
+                        alt="Video360 Studio" 
+                        width={180}
+                        height={60}
+                        priority
+                        className="logo-image"
+                    />
+                </div>
+                
+                {/* Mobile menu overlay */}
+                {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)}></div>}
+                
+                <div className={`menu-items ${menuOpen ? 'open' : ''}`}>
+                    <Link href="/" onClick={() => setMenuOpen(false)}>მთავარი</Link>
+                    <Link href="/services" onClick={() => setMenuOpen(false)}>სერვისები</Link>
+                    <Link href="/about" onClick={() => setMenuOpen(false)}>ჩვენ შესახებ</Link>
+                    <Link href="/contact" onClick={() => setMenuOpen(false)}>კონტაქტი</Link>
+                </div>
+                
+                <div 
+                    className="burger-menu" 
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    ☰
+                </div>
             </div>
-            
-            {/* Mobile menu overlay */}
-            {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)}></div>}
-            
-            <div className={`menu-items ${menuOpen ? 'open' : ''}`}>
-                <Link href="/" onClick={() => setMenuOpen(false)}>მთავარი</Link>
-                <Link href="/services" onClick={() => setMenuOpen(false)}>სერვისები</Link>
-                <Link href="/about" onClick={() => setMenuOpen(false)}>ჩვენ შესახებ</Link>
-                <Link href="/contact" onClick={() => setMenuOpen(false)}>კონტაქტი</Link>
-            </div>
-            
-            <div 
-                className="burger-menu" 
-                onClick={() => setMenuOpen(!menuOpen)}
-            >
-                ☰
-            </div>
-        </div>
+            <div className="header-placeholder"></div>
+        </>
     );
 }
 

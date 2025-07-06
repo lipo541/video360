@@ -1,0 +1,73 @@
+import styles from './glass-bridge.module.css';
+import '../ServiceLocation.css';
+
+export default function GlassBridgeService() {
+  return (
+    <div className="container">
+      <div className={styles.glassBridgeWrapper}>
+        <div className={styles.glassBridgeHeader}>
+          <h1 className={styles.glassBridgeTitle}>360° ფოტო-ვიდეო სელფი შუშის ხიდზე</h1>
+          <p className={styles.glassBridgeDesc}>
+            აღმოაჩინე თბილისის ერთ-ერთი ყველაზე შთამბეჭდავი ლოკაცია სრულიად ახალი კუთხით! ჩვენი 360° ფოტო-ვიდეო სელფი შუშის ხიდზე გაძლევს უნიკალურ შესაძლებლობას, გადაიღო თავი და მეგობრები პროფესიონალური bullet-time ეფექტით, პანორამული ხედებითა და დაუვიწყარი ემოციებით.
+          </p>
+        </div>
+
+        <div className={styles.glassBridgeGallery}>
+          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="შუშის ხიდი თბილისი" />
+          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="360° ფოტო სელფი" />
+          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="თბილისის პანორამა" />
+          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="სელფი მეგობრებთან" />
+        </div>
+
+        <div className={styles.glassBridgeBenefits}>
+          <div className={styles.glassBridgeBenefit}>
+            <div className={styles.glassBridgeBenefitTitle}>360° უნიკალური გამოცდილება</div>
+            <div className={styles.glassBridgeBenefitDesc}>გადაიღე თავი და მეგობრები შუშის ხიდზე, სადაც კამერა გარშემო ტრიალებს და ქმნის ჰოლივუდურ ეფექტს.</div>
+          </div>
+          <div className={styles.glassBridgeBenefit}>
+            <div className={styles.glassBridgeBenefitTitle}>პანორამული ხედები</div>
+            <div className={styles.glassBridgeBenefitDesc}>შუშის ხიდიდან იხილავ თბილისს სრულიად ახალი პერსპექტივით — შენი ფოტო-ვიდეო იქნება ქალაქის ფონზე.</div>
+          </div>
+          <div className={styles.glassBridgeBenefit}>
+            <div className={styles.glassBridgeBenefitTitle}>მომენტალური გაზიარება</div>
+            <div className={styles.glassBridgeBenefitDesc}>ვიდეო და ფოტოები მიიღე ადგილზე, მზად სოციალური ქსელებისთვის და მეგობრებთან გასაზიარებლად.</div>
+          </div>
+          <div className={styles.glassBridgeBenefit}>
+            <div className={styles.glassBridgeBenefitTitle}>პროფესიონალური ხარისხი</div>
+            <div className={styles.glassBridgeBenefitDesc}>გამოიყენე უახლესი ტექნოლოგია და პროფესიონალი ოპერატორები შენი საუკეთესო კადრებისთვის.</div>
+          </div>
+        </div>
+
+        <div className={styles.whatsappContact}>
+          <a href="https://wa.me/995555123456" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+              alt="WhatsApp"
+              className={styles.whatsappLogo}
+            />
+            <span className={styles.whatsappText}>
+              დაგვიკავშირდით WhatsApp-ზე: <b>+995 555 12 34 56</b>
+            </span>
+          </a>
+        </div>
+
+        <div className="service-location">
+          <h2>ლოკაცია რუკაზე</h2>
+          <div className="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.987654321!2d44.809876!3d41.693210!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cfd9876543%3A0xabcdefabcdef5678!2sBridge%20of%20Peace!5e0!3m2!1sen!2sge!4v1689999999999!5m2!1sen!2sge"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="შუშის ხიდი რუკა"
+            ></iframe>
+          </div>
+          <div><b>მისამართი:</b> შუშის ხიდი, თბილისი</div>
+        </div>
+      </div>
+    </div>
+  );
+}

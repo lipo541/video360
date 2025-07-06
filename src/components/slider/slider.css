@@ -93,7 +93,20 @@
 
 /* Keep zoom animation only for images */
 .slider-image img {
-    animation: zoomEffect 8s infinite alternate;
+    animation: zoomEffectTop 8s infinite alternate;
+    transform-origin: top center;
+}
+
+@keyframes zoomEffectTop {
+    0% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+    }
 }
 
 /* Specific styles for video iframe to ensure full coverage */

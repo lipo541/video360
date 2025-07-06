@@ -1,0 +1,162 @@
+.glassBridgeWrapper {
+  background: linear-gradient(120deg, #f7fafc 0%, #e0eafc 100%); /* ღია ცისფერი-თეთრი, როგორც ჰედერი/ფუტერი */
+  border-radius: 22px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 32px rgba(26,32,44,0.08); /* ღრმა ლურჯი ჩრდილი */
+  width: 100%;
+  padding: 0;
+  margin-top: 48px;
+}
+.glassBridgeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-bottom: 2.2rem;
+  margin-top: 0;
+  padding: 0 30px;
+}
+.glassBridgeTitle {
+  color: #1a365d; /* ღრმა ლურჯი, როგორც footer-ის სათაური */
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 8px #e0eafc44;
+}
+.glassBridgeDesc {
+  font-size: 1.18rem;
+  color: #2d3748; /* მუქი ნაცრისფერი ტექსტი */
+  line-height: 1.7;
+  margin: 0;
+}
+.glassBridgeGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin: 2.5rem 0 2rem 0;
+  padding: 0 30px;
+}
+.glassBridgeImg {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px #cfd8dc33;
+  border: 2px solid #e0eafc;
+  background: #fff;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+}
+.glassBridgeImg:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 8px 32px #90cdf433;
+  border-color: #90cdf4;
+}
+.glassBridgeBenefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1.5rem;
+  padding: 0 30px;
+}
+.glassBridgeBenefit {
+  background: linear-gradient(120deg, #fff 60%, #f5f7fa 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #cfd8dc22;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+  min-width: 220px;
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  border: 1px solid #e0eafc;
+}
+.glassBridgeBenefitTitle {
+  color: #3182ce; /* ღია ლურჯი */
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.glassBridgeBenefitDesc {
+  color: #4a5568; /* მუქი ნაცრისფერი */
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.whatsappContact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem 0 1.5rem 0;
+  padding: 0 30px;
+}
+.whatsappLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  border-radius: 32px;
+  padding: 10px 22px 10px 14px;
+  text-decoration: none;
+  font-size: 1.13rem;
+  font-weight: 600;
+  box-shadow: 0 2px 12px #25d36633;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.whatsappLink:hover {
+  background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+  box-shadow: 0 4px 24px #128c7e33;
+}
+.whatsappLogo {
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+  box-shadow: 0 1px 6px #128c7e22;
+}
+.whatsappText {
+  color: #fff;
+  font-family: var(--font-roboto);
+  letter-spacing: 0.01em;
+}
+@media (max-width: 900px) {
+  .glassBridgeWrapper {
+    padding: 0;
+    max-width: 100vw;
+    margin-top: 32px;
+  }
+  .glassBridgeHeader,
+  .glassBridgeGallery,
+  .glassBridgeBenefits {
+    padding: 0 18px;
+  }
+}
+@media (max-width: 600px) {
+  .glassBridgeWrapper {
+    padding: 0;
+    border-radius: 0;
+    margin-top: 18px;
+  }
+  .glassBridgeHeader,
+  .glassBridgeGallery,
+  .glassBridgeBenefits {
+    padding: 0 6px;
+  }
+}
+@media (max-width: 700px) {
+  .whatsappContact {
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .whatsappLink {
+    font-size: 1rem;
+    padding: 8px 12px 8px 10px;
+  }
+  .whatsappLogo {
+    width: 26px;
+    height: 26px;
+  }
+}

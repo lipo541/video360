@@ -34,7 +34,6 @@ p, li, span {
 body {
   background-color: #f5f5f5;
   color: #333;
-  padding-top: 80px; /* Space for fixed navbar */
 }
 
 a {
@@ -51,4 +50,20 @@ ul, ol {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+.container {
+  max-width: 2200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
