@@ -60,9 +60,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden !important;
+    overflow: hidden;
     animation: fadeIn 0.5s ease-in-out;
-    background: #000;
 }
 
 /* Ensure video container fills entire space */
@@ -141,11 +140,10 @@
         left: -10% !important;
         width: 120% !important;
         height: 120% !important;
-        transform: scale(1.2) !important;
-        transform-origin: center center !important;
     }
 }
 
+/* Ensure video scales properly on mobile */
 @media (max-width: 480px) {
     .slider-video-iframe,
     .slider-image .slider-video-iframe {
@@ -153,7 +151,6 @@
         left: -15% !important;
         width: 130% !important;
         height: 130% !important;
-        transform: scale(1.3) !important;
     }
 }
 
@@ -611,134 +608,4 @@
     max-width: none !important;
     max-height: none !important;
     overflow: hidden !important;
-}
-
-/* Mobile-specific video scaling for full coverage */
-@media (max-width: 768px) {
-    .slider-container {
-        height: 450px;
-    }
-    
-    .slider-video-iframe {
-        top: -10% !important;
-        left: -10% !important;
-        width: 120% !important;
-        height: 120% !important;
-        transform: scale(1.2) !important;
-        transform-origin: center center !important;
-    }
-    
-    .slider-video-iframe[src*="cloudinary"] {
-        top: -10% !important;
-        left: -10% !important;
-        width: 120% !important;
-        height: 120% !important;
-        transform: scale(1.2) !important;
-        transform-origin: center center !important;
-    }
-    
-    .slider-video-iframe[src*="cloudinary"] video,
-    .slider-video-iframe[src*="cloudinary"] .cld-video-player,
-    .slider-video-iframe[src*="cloudinary"] .vjs-tech,
-    .slider-video-iframe[src*="cloudinary"] .video-js,
-    .slider-video-iframe[src*="cloudinary"] .vjs-fluid {
-        transform: scale(1.15) !important;
-        transform-origin: center center !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .slider-container {
-        height: 400px;
-    }
-    
-    .slider-video-iframe {
-        top: -15% !important;
-        left: -15% !important;
-        width: 130% !important;
-        height: 130% !important;
-        transform: scale(1.3) !important;
-    }
-    
-    .slider-video-iframe[src*="cloudinary"] {
-        top: -15% !important;
-        left: -15% !important;
-        width: 130% !important;
-        height: 130% !important;
-        transform: scale(1.3) !important;
-    }
-    
-    .slider-video-iframe[src*="cloudinary"] video,
-    .slider-video-iframe[src*="cloudinary"] .cld-video-player,
-    .slider-video-iframe[src*="cloudinary"] .vjs-tech,
-    .slider-video-iframe[src*="cloudinary"] .video-js,
-    .slider-video-iframe[src*="cloudinary"] .vjs-fluid {
-        transform: scale(1.25) !important;
-    }
-}
-
-/* Ultra aggressive mobile video coverage using viewport units */
-@media (max-width: 768px) and (orientation: portrait) {
-    .slider-video-iframe {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        transform: none !important;
-        z-index: 0 !important;
-    }
-    
-    .slider-image {
-        position: relative !important;
-        width: 100vw !important;
-        height: 450px !important;
-        overflow: hidden !important;
-    }
-    
-    .slider-video-iframe[src*="cloudinary"] {
-        position: absolute !important;
-        top: -25% !important;
-        left: -25% !important;
-        width: 150% !important;
-        height: 150% !important;
-        transform: scale(1.5) !important;
-        transform-origin: center center !important;
-    }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-    .slider-video-iframe {
-        top: -20% !important;
-        left: -20% !important;
-        width: 140% !important;
-        height: 140% !important;
-        transform: scale(1.4) !important;
-    }
-}
-
-/* Force aspect ratio and cover behavior for all video elements */
-.slider-video-iframe,
-.slider-video-iframe * {
-    aspect-ratio: unset !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-}
-
-/* Additional mobile fixes for iOS Safari and Chrome */
-@media (max-width: 768px) {
-    .slider-container {
-        position: relative;
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        will-change: transform;
-    }
-    
-    .slider-video-iframe {
-        -webkit-transform: scale(1.2) translateZ(0) !important;
-        transform: scale(1.2) translateZ(0) !important;
-        will-change: transform;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-    }
 }
