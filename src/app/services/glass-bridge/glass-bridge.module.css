@@ -241,9 +241,6 @@
     border-radius: 10px;
     display: block;
   }
-  html, body, #__next {
-    overflow-x: hidden !important;
-  }
 }
 @media (max-width: 700px) {
   .whatsappContact {

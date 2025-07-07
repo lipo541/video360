@@ -19,6 +19,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent horizontal scroll for the whole app */
+html, body, #__next {
+  overflow-x: hidden !important;
+}
+
 /* Typography improvements */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-roboto);

@@ -249,9 +249,6 @@
     border-radius: 10px;
     display: block;
   }
-  html, body, #__next {
-    overflow-x: hidden !important;
-  }
 }
 .container {
     width: 100%;
