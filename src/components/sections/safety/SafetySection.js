@@ -4,7 +4,7 @@ import './SafetySection.css';
 const SafetySection = () => {
     const safetyPoints = [
         {
-            title: "360° ფოტო-ვიდეო სელფის გაქირავება ივენთებისთვის და წველებისთვის",
+            title: "გაქირავება ივენთებისთვის და წვეულებებისთვის",
             description: "ვიყენებთ სრულად ავტომატიზებულ 360° კამერის სისტემას დასინქრონებული მოტორით.",
         },
         {
@@ -12,23 +12,27 @@ const SafetySection = () => {
             description: "ჩვენი ოპერატორები 360° ვიდეო ეფექტების სპეციალისტები არიან დიდი გამოცდილებით.",
         },
         {
-            title: "360° ფოტო-ვიდეო სელფის ლოკაციებისა და ივენთების მენეჯერები",
-            description: "ღონისძიებისთვის სხვადასხვა საათის ოპციები - ერთი საათიდან მთელი დღის პაკეტებამდე.",
+            title: "ლოკაციებისა და ივენთების მენეჯმენტი",
+            description: "ღონისძიებისთვის სხვადასხვა საათის ოპციები — ერთი საათიდან მთელი დღის პაკეტებამდე.",
         },
     ];
 
     return (
         <section className="safety-section">
-            <div className="safety-content">
-                <h2 className="section-title">360° ფოტო-ვიდეო სელფის გაქირავება-გაყიდვა</h2>
-                <div className="safety-points">
-                    {safetyPoints.map((point, index) => (
-                        <div className="safety-point" key={index}>
-                            <h3>{point.title}</h3>
-                            <p>{point.description}</p>
-                        </div>
-                    ))}
+            <div className="safety-card">
+                <h2 className="safety-title">360° ფოტო-ვიდეო სელფის გაქირავება და გაყიდვა</h2>
+                <div className="safety-desc">
+                    ჩვენი სერვისი იდეალურია როგორც ივენთებისთვის, ასევე ინდივიდუალური მომხმარებლებისთვის. მიიღეთ პროფესიონალური მომსახურება, ინოვაციური ტექნოლოგიები და მოქნილი პაკეტები.
                 </div>
+                <ul className="safety-list">
+                    {safetyPoints.map((point, index) => (
+                        <li className="safety-list-item" key={index}>
+                            <span className="safety-list-title">{point.title}</span>
+                            <span className="safety-list-desc">{point.description}</span>
+                        </li>
+                    ))}
+                </ul>
+                <a href="/services/info360" className="safety-more-btn">იხილეთ სრული ინფორმაცია</a>
             </div>
         </section>
     );

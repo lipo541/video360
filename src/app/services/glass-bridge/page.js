@@ -39,17 +39,36 @@ export default function GlassBridgeService() {
         </div>
 
         <div className={styles.whatsappContact}>
-          <a href="https://wa.me/995555123456" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
+          <a href="https://wa.me/+995593516842" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
               alt="WhatsApp"
               className={styles.whatsappLogo}
             />
             <span className={styles.whatsappText}>
-              დაგვიკავშირდით WhatsApp-ზე: <b>+995 555 12 34 56</b>
+              დაგვიკავშირდით WhatsApp-ზე: <b>+995 593 51 68 42</b>
             </span>
           </a>
         </div>
+
+        {/* ფასების სექცია */}
+        <section className={styles.pricesSection}>
+          <div className={styles.pricesHeader}>
+            <h1 className={styles.pricesTitle}>ფასები</h1>
+            <div className={styles.pricesSlogan}>გააზიარე შენი ემოცია!</div>
+            <div className={styles.pricesDesc}>აირჩიე ინდივიდუალური ან ჯგუფური გადაღება საუკეთესო ხარისხით.</div>
+          </div>
+          <div className={styles.pricesList}>
+            <div className={styles.priceCard}>
+              <span className={styles.priceType}>ინდივიდუალური სელფი</span>
+              <span className={styles.priceValue}>10 ლარი</span>
+            </div>
+            <div className={styles.priceCard}>
+              <span className={styles.priceType}>ჯგუფური სელფი</span>
+              <span className={styles.priceValue}>20 ლარი</span>
+            </div>
+          </div>
+        </section>
 
         <div className="service-location">
           <h2>ლოკაცია რუკაზე</h2>

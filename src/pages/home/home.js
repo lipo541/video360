@@ -1,6 +1,7 @@
 import React from 'react';
 import { Slider } from '../../components/slider/slider';
 import ServicesSection from '../../components/sections/services/ServicesSection';
+import LocationManagers from '../../components/location-managers/LocationManagers';
 import SafetySection from '../../components/sections/safety/SafetySection';
 import SocialSection from '../../components/sections/social/SocialSection';
 import ContactSection from '../../components/sections/contact/ContactSection';
@@ -14,6 +15,7 @@ const Home = () => {
       </section>
       <div className="home-content">
         <ServicesSection />
+        <LocationManagers />
         <SafetySection />
         <SocialSection />
         <ContactSection />

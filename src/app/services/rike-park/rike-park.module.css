@@ -122,6 +122,75 @@
   font-family: var(--font-roboto);
   letter-spacing: 0.01em;
 }
+/* ფასების სექცია */
+.pricesSection {
+  background: linear-gradient(120deg, #f0f4ff 0%, #e0eafc 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(26,32,44,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin: 2.5rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 520px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pricesHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.pricesTitle {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.5rem;
+}
+.pricesSlogan {
+  font-size: 1.15rem;
+  color: #3182ce;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.pricesDesc {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 0.7rem;
+}
+.pricesList {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.priceCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #cfd8dc33;
+  padding: 1.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.priceCard:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 24px #90cdf433;
+}
+.priceType {
+  font-size: 1.08rem;
+  color: #2d3748;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.priceValue {
+  font-size: 1.35rem;
+  color: #3182ce;
+  font-weight: 700;
+}
 @media (max-width: 700px) {
   .rikeParkWrapper {
     margin-top: 32px;
@@ -152,6 +221,17 @@
   .rikeParkGallery,
   .rikeParkBenefits {
     padding: 0 6px;
+  }
+  .pricesSection {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  }
+  .pricesList {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .priceCard {
+    min-width: 120px;
+    padding: 1rem 1.2rem;
   }
 }
 .container {

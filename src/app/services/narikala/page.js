@@ -44,6 +44,24 @@ export default function NarikalaService() {
             </span>
           </a>
         </div>
+        {/* ფასების სექცია */}
+        <section className={styles.pricesSection}>
+          <div className={styles.pricesHeader}>
+            <h1 className={styles.pricesTitle}>ფასები</h1>
+            <div className={styles.pricesSlogan}>გააზიარე შენი ემოცია!</div>
+            <div className={styles.pricesDesc}>აირჩიე ინდივიდუალური ან ჯგუფური გადაღება საუკეთესო ხარისხით.</div>
+          </div>
+          <div className={styles.pricesList}>
+            <div className={styles.priceCard}>
+              <span className={styles.priceType}>ინდივიდუალური სელფი</span>
+              <span className={styles.priceValue}>10 ლარი</span>
+            </div>
+            <div className={styles.priceCard}>
+              <span className={styles.priceType}>ჯგუფური სელფი</span>
+              <span className={styles.priceValue}>20 ლარი</span>
+            </div>
+          </div>
+        </section>
         <div className="service-location">
           <h2>ლოკაცია რუკაზე</h2>
           <div className="map">
