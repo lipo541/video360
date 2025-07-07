@@ -24,7 +24,7 @@ export const Slider = () => {
         {
             image: "https://res.cloudinary.com/dgsemkiaf/image/upload/v1751641372/360slider1_qpvz6a.jpg",
             fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            heading: "360° Matrix Shot გადაღება",
+            heading: "360° ფოტო - ვიდეო სელფი",
             subheading: "პროფესიონალური 360° bullet-time ეფექტი - მიღებთ წრიულად მბრუნავი კამერით უნიკალურ ვიდეოს",
             cta: "დაგვიკავშირდით"
         },
@@ -38,7 +38,7 @@ export const Slider = () => {
         {
             image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
             fallbackGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-            heading: "Bullet Time ეფექტის სერვისი",
+            heading: "360° ფოტო - ვიდეო სელფი",
             subheading: "თქვენი ღონისძიების სტუმრებისთვის პროფესიონალური 360° კონტენტი ჰოლივუდის ფილმების სტილით",
             cta: "გაიგეთ მეტი"
         },
