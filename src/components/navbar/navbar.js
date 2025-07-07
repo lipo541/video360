@@ -40,9 +40,9 @@ const Navbar = () => {
     return (
         <>
             <div className="header-container">
-                <div className="logo" onClick={() => router.push('/')}>
+                <div className="logo" onClick={() => router.push('/')}> 
                     <Image 
-                        src="/images/slider/logo1.png" 
+                        src="/images/slider/logomain.jpeg" 
                         alt="Video360 Studio" 
                         width={180}
                         height={60}

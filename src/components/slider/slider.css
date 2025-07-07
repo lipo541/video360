@@ -26,8 +26,10 @@
 @media (min-width: 1920px) {
     .slider-wrapper {
         max-width: 2200px;
-        padding-left: 4rem;
-        padding-right: 4rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
@@ -572,4 +574,10 @@
     background: #000;
     transform: none;
     overflow: hidden;
+}
+
+@media (min-width: 1440px) {
+    .header-placeholder {
+        height: unset;
+    }
 }
