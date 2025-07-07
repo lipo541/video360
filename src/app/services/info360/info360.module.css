@@ -460,3 +460,24 @@
     font-size: 0.98rem;
   }
 }
+@media (max-width: 600px) {
+  .info360Gallery {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0 2vw;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .info360Img {
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  html, body, #__next {
+    overflow-x: hidden !important;
+  }
+}
