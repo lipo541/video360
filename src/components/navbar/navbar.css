@@ -249,3 +249,96 @@
         height: 50px; /* ემთხვევა .logo-ს height-ს მობილურზე */
     }
 }
+
+.lang-dropdown {
+  position: relative;
+  margin-left: 8px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 1.08rem;
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px 6px 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #1e88e522;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+}
+
+.lang-btn:active,
+.lang-btn:focus {
+  background: #1565c0;
+}
+
+.lang-btn .lang-arrow {
+  margin-left: 4px;
+  color: #fff;
+}
+
+.lang-dropdown-list {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 8px 32px #0002;
+  border-radius: 12px;
+  min-width: 110px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px 0;
+  border: 1px solid #e3e3e3;
+  animation: fadeInLang 0.18s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes fadeInLang {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lang-dropdown-option {
+  background: none;
+  border: none;
+  color: #222;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 8px 22px 8px 16px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+}
+
+.lang-dropdown-option:hover,
+.lang-dropdown-option:focus {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.lang-dropdown-option.active {
+  background: #1e88e5;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .lang-btn {
+    font-size: 0.98rem;
+    padding: 6px 10px 6px 8px;
+  }
+  .lang-dropdown-list {
+    min-width: 90px;
+    right: 0;
+    left: auto;
+  }
+}
