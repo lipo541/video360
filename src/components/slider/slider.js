@@ -12,15 +12,15 @@ export const Slider = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     
     const sliderData = [
-        {
-            type: "video",
-            videoUrl: "https://player.cloudinary.com/embed/?cloud_name=dgsemkiaf&public_id=samples%2Felephants&profile=cld-default&autoplay=true&muted=true&loop=true&controls=false&hideContextMenu=true&fluid=false&crop=fill&quality=auto&aspectRatio=16:9&width=100%25&height=100%25&fit=cover",
-            fallbackImage: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-            fallbackGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
-            heading: "360° ვიდეო - ნახეთ შედეგი",
-            subheading: "რეალური მაგალითი 360° bullet-time ვიდეოსი - ასეთს მიიღებთ ჩვენი სერვისით",
-            cta: "ნახეთ მეტი მაგალითი"
-        },
+        // {
+        //     type: "video",
+        //     videoUrl: "https://player.cloudinary.com/embed/?cloud_name=dgsemkiaf&public_id=samples%2Felephants&profile=cld-default&autoplay=true&muted=true&loop=true&controls=false&hideContextMenu=true&fluid=false&crop=fill&quality=auto&aspectRatio=16:9&width=100%25&height=100%25&fit=cover",
+        //     fallbackImage: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+        //     fallbackGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
+        //     heading: "360° ვიდეო - ნახეთ შედეგი",
+        //     subheading: "რეალური მაგალითი 360° bullet-time ვიდეოსი - ასეთს მიიღებთ ჩვენი სერვისით",
+        //     cta: "ნახეთ მეტი მაგალითი"
+        // },
         {
             image: "https://res.cloudinary.com/dgsemkiaf/image/upload/v1751641372/360slider1_qpvz6a.jpg",
             fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -208,9 +208,18 @@ export const Slider = () => {
                         )}
                     </div>
                     
-                    <div className={`slider-text ${isTransitioning ? 'transitioning' : ''}`}>
-                        <h1>{sliderData[currentSlide].heading}</h1>
-                        <p>{sliderData[currentSlide].subheading}</p>
+                    <div className={`slider-text ${isTransitioning ? 'transitioning' : ''}`} style={{
+                        position: 'absolute',
+                        inset: '68% auto auto 50%',
+                        zIndex: 2,
+                        transform: 'translate(-50%, -50%)',
+                        width: '90%',
+                        maxWidth: '700px',
+                        textAlign: 'center',
+                        padding: '0px 10px'
+                    }}>
+                        <h1 style={{ color: '#fff', fontSize: '1.35rem', marginBottom: '0.5rem', lineHeight: 1.18 }}>{sliderData[currentSlide].heading}</h1>
+                        <p style={{ color: '#ffd166', fontWeight: 600, fontSize: '1.01rem', marginBottom: '1.1rem', lineHeight: 1.22 }}>{sliderData[currentSlide].subheading}</p>
                         <button className="slider-cta" onClick={handleCall}>
                             {sliderData[currentSlide].cta}
                         </button>
