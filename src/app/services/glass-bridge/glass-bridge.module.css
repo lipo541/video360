@@ -1,281 +1,497 @@
+/* --- ლამაზი გალერეის სტილები ვებსაიტის ფერებით --- */
+
+:root {
+  --main-bg: #f7fafc;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #1a365d;
+  --text-secondary: #4a5568;
+  --accent: #f4a261;
+  --dark-bg: #1a202c;
+  --radius: 16px;
+  --shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
+  --gallery-shadow: 0 6px 30px rgba(26, 54, 93, 0.12);
+}
+
+body, html {
+  background: var(--main-bg);
+  color: var(--text-main);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
 .glassBridgeWrapper {
-  background: linear-gradient(120deg, #f7fafc 0%, #e0eafc 100%); /* ღია ცისფერი-თეთრი, როგორც ჰედერი/ფუტერი */
-  border-radius: 22px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 32px rgba(26,32,44,0.08); /* ღრმა ლურჯი ჩრდილი */
+  background: var(--main-bg);
+  border-radius: var(--radius);
+  box-shadow: none;
   width: 100%;
   padding: 0;
-  margin-top: 48px;
+  margin: 40px 0 0 0;
 }
+
 .glassBridgeHeader {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.2rem;
-  margin-bottom: 2.2rem;
-  margin-top: 0;
-  padding: 0 30px;
+  margin-bottom: 2.5rem;
+  padding: 32px 0 0 0;
+  position: relative;
 }
+
 .glassBridgeTitle {
-  color: #1a365d; /* ღრმა ლურჯი, როგორც footer-ის სათაური */
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: -1px;
-  text-shadow: 0 2px 8px #e0eafc44;
+  color: var(--text-main);
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 4px rgba(26, 54, 93, 0.1);
+  position: relative;
+  line-height: 1.2;
 }
+
+.glassBridgeTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--text-main));
+  border-radius: 2px;
+}
+
 .glassBridgeDesc {
-  font-size: 1.18rem;
-  color: #2d3748; /* მუქი ნაცრისფერი ტექსტი */
-  line-height: 1.7;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
   margin: 0;
+  max-width: 90%;
+  text-align: justify;
+  position: relative;
+  padding-left: 20px;
 }
+
+.glassBridgeDesc::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  border-radius: 2px;
+}
+
 .glassBridgeGallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.2rem;
-  margin: 2.5rem 0 2rem 0;
-  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--gallery-shadow);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
+
+.glassBridgeGallery:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(26, 54, 93, 0.15);
+}
+
+.glassBridgeGallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--text-main) 100%);
+}
+
+.glassBridgeMediaLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--accent) 0%, #ff8a65 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  position: relative;
+}
+
+.glassBridgeMediaLabel::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
 .glassBridgeImg {
   width: 100%;
-  aspect-ratio: 4/3;
+  max-width: 600px;
+  aspect-ratio: 16/10;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.1);
+  margin-bottom: 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 2px 16px #cfd8dc33;
-  border: 2px solid #e0eafc;
-  background: #fff;
-  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+  border: 2px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
+
 .glassBridgeImg:hover {
-  transform: scale(1.04) rotate(-1deg);
-  box-shadow: 0 8px 32px #90cdf433;
-  border-color: #90cdf4;
+  transform: scale(1.02);
+  box-shadow: 0 8px 35px rgba(244, 162, 97, 0.25);
+  border-color: var(--accent);
 }
+
+.glassBridgeImg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.glassBridgeImg:hover::after {
+  left: 100%;
+}
+
 .glassBridgeBenefits {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2.5rem;
   margin-top: 1.5rem;
-  padding: 0 30px;
+  padding: 0;
 }
+
 .glassBridgeBenefit {
-  background: linear-gradient(120deg, #fff 60%, #f5f7fa 100%);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #cfd8dc22;
-  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
-  min-width: 220px;
-  flex: 1 1 220px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.7rem;
-  border: 1px solid #e0eafc;
+  gap: 0.8rem;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
+
+.glassBridgeBenefit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(26, 54, 93, 0.12);
+  border-color: var(--accent);
+}
+
+.glassBridgeBenefit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--text-main));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.glassBridgeBenefit:hover::before {
+  transform: scaleX(1);
+}
+
 .glassBridgeBenefitTitle {
-  color: #3182ce; /* ღია ლურჯი */
+  color: var(--text-main);
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
+  position: relative;
 }
+
+.glassBridgeBenefitTitle::after {
+  content: '→';
+  color: var(--accent);
+  margin-left: 8px;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.glassBridgeBenefit:hover .glassBridgeBenefitTitle::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .glassBridgeBenefitDesc {
-  color: #4a5568; /* მუქი ნაცრისფერი */
+  color: var(--text-secondary);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  text-align: justify;
 }
+
 .whatsappContact {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2.5rem 0 1.5rem 0;
-  padding: 0 30px;
+  margin: 2rem 0 1.2rem 0;
+  padding: 0;
 }
+
 .whatsappLink {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+  gap: 10px;
+  background: #25d366;
   color: #fff;
-  border-radius: 32px;
-  padding: 10px 22px 10px 14px;
+  border-radius: 24px;
+  padding: 8px 18px 8px 12px;
   text-decoration: none;
-  font-size: 1.13rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  box-shadow: 0 2px 12px #25d36633;
+  box-shadow: 0 2px 8px #25d36622;
   transition: background 0.2s, box-shadow 0.2s;
 }
 .whatsappLink:hover {
-  background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
-  box-shadow: 0 4px 24px #128c7e33;
+  background: #128c7e;
+  box-shadow: 0 4px 16px #128c7e22;
 }
 .whatsappLogo {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   background: #fff;
   border-radius: 50%;
-  padding: 3px;
-  box-shadow: 0 1px 6px #128c7e22;
+  padding: 2px;
+  box-shadow: 0 1px 4px #128c7e11;
 }
 .whatsappText {
   color: #fff;
-  font-family: var(--font-roboto);
+  font-family: inherit;
   letter-spacing: 0.01em;
 }
+
 /* ფასების სექცია */
 .pricesSection {
-  background: linear-gradient(120deg, #f0f4ff 0%, #e0eafc 100%);
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(26,32,44,0.10);
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--main-bg) 100%);
+  border-radius: var(--radius);
+  box-shadow: var(--gallery-shadow);
   padding: 2.5rem 2rem 2rem 2rem;
-  margin: 2.5rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 520px;
+  max-width: 480px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
+
+.pricesSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--text-main) 100%);
+}
+
 .pricesHeader {
   text-align: center;
   margin-bottom: 1.5rem;
 }
+
 .pricesTitle {
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #1a365d;
-  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+  position: relative;
 }
+
+.pricesTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
 .pricesSlogan {
-  font-size: 1.15rem;
-  color: #3182ce;
-  font-weight: 500;
-  margin-bottom: 0.3rem;
-}
-.pricesDesc {
-  font-size: 1rem;
-  color: #4a5568;
-  margin-bottom: 0.7rem;
-}
-.pricesList {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.priceCard {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px #cfd8dc33;
-  padding: 1.2rem 2.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 160px;
-  margin-bottom: 0.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.priceCard:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 6px 24px #90cdf433;
-}
-.priceType {
-  font-size: 1.08rem;
-  color: #2d3748;
+  font-size: 1.05rem;
+  color: var(--accent);
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
+
+.pricesDesc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.pricesList {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.priceCard {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(26, 54, 93, 0.08);
+  padding: 1.3rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140px;
+  margin-bottom: 0.4rem;
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.priceCard:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(244, 162, 97, 0.2);
+  border-color: var(--accent);
+}
+
+.priceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.priceCard:hover::before {
+  left: 100%;
+}
+
+.priceType {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
 .priceValue {
-  font-size: 1.35rem;
-  color: #3182ce;
+  font-size: 1.3rem;
+  color: var(--accent);
   font-weight: 700;
+  position: relative;
 }
+
 @media (max-width: 900px) {
-  .glassBridgeWrapper {
-    padding: 0;
+  .container {
     max-width: 100vw;
-    margin-top: 32px;
+    padding: 0 12px;
   }
-  .glassBridgeHeader,
-  .glassBridgeGallery,
-  .glassBridgeBenefits {
-    padding: 0 18px;
+  .glassBridgeWrapper {
+    margin-top: 20px;
+  }
+  .glassBridgeTitle {
+    font-size: 2rem;
+  }
+  .glassBridgeDesc {
+    padding-left: 0;
+  }
+  .glassBridgeDesc::before {
+    display: none;
   }
 }
+
 @media (max-width: 600px) {
-  .glassBridgeWrapper {
-    padding: 0;
-    border-radius: 0;
-    margin-top: 18px;
+  .container {
+    padding: 0 8px;
   }
-  .glassBridgeHeader,
-  .glassBridgeGallery,
+  .glassBridgeWrapper {
+    border-radius: 0;
+    margin-top: 8px;
+  }
+  .glassBridgeHeader {
+    padding: 16px;
+  }
+  .glassBridgeTitle {
+    font-size: 1.7rem;
+  }
+  .glassBridgeDesc {
+    font-size: 1.05rem;
+    max-width: 100%;
+  }
+  .glassBridgeGallery {
+    padding: 16px 12px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+  .glassBridgeImg {
+    max-width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 16/9;
+  }
   .glassBridgeBenefits {
-    padding: 0 6px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .glassBridgeBenefit {
+    padding: 1.2rem;
   }
   .pricesSection {
-    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    padding: 1.5rem 1rem 1.2rem 1rem;
+    margin: 2rem 0 1rem 0;
   }
   .pricesList {
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.8rem;
   }
   .priceCard {
-    min-width: 120px;
+    min-width: 100px;
     padding: 1rem 1.2rem;
   }
-  .glassBridgeGallery {
-    grid-template-columns: 1fr;
-    gap: 0.7rem;
-    padding: 0 2vw;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-  .glassBridgeImg {
-    width: 100%;
-    max-width: 100vw;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-  }
-}
-@media (max-width: 700px) {
-  .whatsappContact {
-    justify-content: center;
-    padding: 0 10px;
-  }
-  .whatsappLink {
-    font-size: 1rem;
-    padding: 8px 12px 8px 10px;
-  }
-  .whatsappLogo {
-    width: 26px;
-    height: 26px;
-  }
-}
-/* glass-bridge, narikala, rike-park გვერდების მთავარი wrapper-ები - უნიფიცირებული სტილი */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-@media (min-width: 1440px) {
-    .container {
-        max-width: 1800px;
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
-}
-@media (min-width: 1920px) {
-    .container {
-        max-width: 2200px;
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
 }

@@ -12,11 +12,18 @@ export default function GlassBridgeService() {
           </p>
         </div>
 
+        {/* ვიდეოს ბლოკი */}
         <div className={styles.glassBridgeGallery}>
-          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="შუშის ხიდი თბილისი" />
-          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="360° ფოტო სელფი" />
-          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="თბილისის პანორამა" />
-          <img className={styles.glassBridgeImg} src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="სელფი მეგობრებთან" />
+          <div className={styles.glassBridgeMediaLabel}>ვიდეო</div>
+          <video className={styles.glassBridgeImg} controls poster="/images/locations/most-mira1.jpg" style={{ aspectRatio: 'unset', objectFit: 'contain', width: '100%', height: 'auto', maxWidth: '600px', background: '#f8fafc' }}>
+            <source src="/images/locations/glassvideo.mp4" type="video/mp4" />
+            თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ჩვენებას.
+          </video>
+        </div>
+        {/* სურათის ბლოკი */}
+        <div className={styles.glassBridgeGallery}>
+          <div className={styles.glassBridgeMediaLabel}>ფოტო</div>
+          <img className={styles.glassBridgeImg} src="/images/locations/glass.jpeg" alt="შუშის ხიდი თბილისი" />
         </div>
 
         <div className={styles.glassBridgeBenefits}>

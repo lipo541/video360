@@ -9,10 +9,18 @@ export default function NarikalaService() {
           <h1 className={styles.narikalaTitle}>360° ფოტო-ვიდეო სელფი ნარიყალაზე</h1>
           <p className={styles.narikalaDesc}>სპეციალური 360° ფოტო-ზონა თქვენი ღონისძიებისთვის — სტუმრები იღებენ უნიკალური ვიდეოებს ნარიყალას ულამაზეს ფონზე.</p>
         </div>
+        {/* ვიდეოს ბლოკი */}
         <div className={styles.narikalaGallery}>
-          <img className={styles.narikalaImg} src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="ნარიყალა თბილისი" />
-          <img className={styles.narikalaImg} src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="360° ფოტო სელფი" />
-          <img className={styles.narikalaImg} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="თბილისის პანორამა" />
+          <div className={styles.narikalaMediaLabel}>ვიდეო</div>
+          <video className={styles.narikalaImg} controls poster="/images/locations/narikala.jpg">
+            <source src="/images/locations/narikalavideo.mp4" type="video/mp4" />
+            თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ჩვენებას.
+          </video>
+        </div>
+        {/* ფოტო ბლოკი */}
+        <div className={styles.narikalaGallery}>
+          <div className={styles.narikalaMediaLabel}>ფოტო</div>
+          <img className={styles.narikalaImg} src="/images/locations/narikala1.jpeg" alt="ნარიყალა თბილისი" />
         </div>
         <div className={styles.narikalaBenefits}>
           <div className={styles.narikalaBenefit}>
