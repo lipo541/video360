@@ -455,10 +455,15 @@ video.rikeParkImg {
   }
   .rikeParkImg,
   video.rikeParkImg {
-    max-width: 100%;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
     border-radius: 8px;
     object-fit: unset;
     aspect-ratio: unset;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .rikeParkBenefits {
     grid-template-columns: 1fr;
