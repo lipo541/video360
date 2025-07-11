@@ -3,16 +3,29 @@ import '../ServiceLocation.css';
 
 export default function RikeParkService() {
   return (
-    <div className="container">
+    <div className={styles.container}>
       <div className={styles.rikeParkWrapper}>
         <div className={styles.rikeParkHeader}>
           <h1 className={styles.rikeParkTitle}>360° ფოტო-ვიდეო სელფი რიყის პარკში</h1>
           <p className={styles.rikeParkDesc}>ნელი მოძრაობის 360° ეფექტი — ვიდეო, რომელიც ეპიკურად ტრიალებს გარშემო და გიგებთ რიყის პარკის პანორამულ გარემოში.</p>
         </div>
-        <div className={styles.rikeParkGallery}>
-          <img className={styles.rikeParkImg} src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="რიყის პარკი თბილისი" />
-          <img className={styles.rikeParkImg} src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="360° ფოტო სელფი" />
-          <img className={styles.rikeParkImg} src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="თბილისის პანორამა" />
+        {/* ვიდეო და ფოტო სექციები column და ცენტრში, h1 სათაურით */}
+        <div className={styles.rikeParkMediaSection}>
+          <div className={styles.rikeParkMediaBlock}>
+            <div className={styles.rikeParkGallery}>
+              <div className={styles.rikeParkMediaLabel}>ვიდეო</div>
+              <video className={styles.rikeParkImg} controls poster="/images/locations/rikeposter1.jpg">
+                <source src="/images/locations/rikevideo.mp4" type="video/mp4" />
+                თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ჩვენებას.
+              </video>
+            </div>
+          </div>
+          <div className={styles.rikeParkMediaBlock}>
+            <div className={styles.rikeParkGallery}>
+              <div className={styles.rikeParkMediaLabel}>ფოტო</div>
+              <img className={styles.rikeParkImg} src="/images/locations/rikepic.jpeg" alt="რიყის პარკი თბილისი" />
+            </div>
+          </div>
         </div>
         <div className={styles.rikeParkBenefits}>
           <div className={styles.rikeParkBenefit}>
@@ -35,7 +48,7 @@ export default function RikeParkService() {
         <div className={styles.whatsappContact}>
           <a href="https://wa.me/995555123456" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+              src="/images/locations/rikepark1.jpeg"
               alt="WhatsApp"
               className={styles.whatsappLogo}
             />
