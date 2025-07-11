@@ -1,18 +1,5 @@
 /* --- ლამაზი გალერეის სტილები ვებსაიტის ფერებით --- */
 
-:root {
-  --main-bg: #f7fafc;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --text-main: #1a365d;
-  --text-secondary: #4a5568;
-  --accent: #f4a261;
-  --dark-bg: #1a202c;
-  --radius: 16px;
-  --shadow: 0 4px 20px rgba(26, 54, 93, 0.08);
-  --gallery-shadow: 0 6px 30px rgba(26, 54, 93, 0.12);
-}
-
 .narikalaWrapper {
   background: var(--main-bg);
   border-radius: var(--radius);
