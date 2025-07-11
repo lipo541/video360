@@ -23,7 +23,7 @@ export default function RikeParkService() {
           <div className={styles.rikeParkMediaBlock}>
             <div className={styles.rikeParkGallery}>
               <div className={styles.rikeParkMediaLabel}>ფოტო</div>
-              <img className={styles.rikeParkImg} src="/images/locations/rikepic.jpeg" alt="რიყის პარკი თბილისი" />
+              <img className={styles.rikeParkImg} src="/images/locations/Rikepic.jpeg" alt="რიყის პარკი თბილისი" />
             </div>
           </div>
         </div>
