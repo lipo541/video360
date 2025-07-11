@@ -14,7 +14,7 @@ export default function RikeParkService() {
           <div className={styles.rikeParkMediaBlock}>
             <div className={styles.rikeParkGallery}>
               <div className={styles.rikeParkMediaLabel}>ვიდეო</div>
-              <video className={styles.rikeParkImg} controls poster="/images/locations/rikeposter1.jpg">
+              <video className={styles.rikeParkImg} controls poster="/images/locations/rike-park.jpg">
                 <source src="/images/locations/rikevideo.mp4" type="video/mp4" />
                 თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ჩვენებას.
               </video>
