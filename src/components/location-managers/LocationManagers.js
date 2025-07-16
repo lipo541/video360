@@ -87,11 +87,7 @@ const locationManagers = [
     age: 20,
     phone: '+995 591 15 17 02'
   },
-  {
-    img: '/images/locationmanagers/andrealaliashvili.jpeg',
-    age: 20,
-    phone: '+995 557 25 52 03'
-  },
+
   {
     img: '/images/locationmanagers/badurika.jpeg',
     age: 20,
@@ -142,13 +138,24 @@ const LocationManagers = () => {
         {arr.map((m, i) => {
           const mt = managersT[sectionKey][i];
           return (
-            <div className="manager-card" key={mt.name + i}>
-              <img src={m.img} alt={mt.name} className="manager-img" />
+            <div className="manager-card" key={m.phone}>
+              <img 
+                src={m.img} 
+                alt={`${mt.name} - ${mt.role} | ${t.teamTitle}`} 
+                className="manager-img" 
+                loading="lazy"
+              />
               <div className="manager-info">
                 <div className="manager-name">{mt.name}</div>
                 <div className="manager-role">{mt.role}</div>
                 <div className="manager-desc">{mt.desc}</div>
-                <button className="manager-more-btn" onClick={() => handleOpenModal({...m, ...mt})}>{t.more}</button>
+                <button 
+                  className="manager-more-btn" 
+                  onClick={() => handleOpenModal({...m, ...mt})}
+                  aria-label={`${mt.name} ${t.more}`}
+                >
+                  {t.more}
+                </button>
               </div>
             </div>
           );
@@ -169,7 +176,12 @@ const LocationManagers = () => {
         <div className="manager-modal-overlay" onClick={handleCloseModal}>
           <div className="manager-modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={handleCloseModal}>×</button>
-            <img src={selectedManager.img} alt={selectedManager.name} className="manager-modal-img" />
+            <img 
+              src={selectedManager.img} 
+              alt={`${selectedManager.name} - ${selectedManager.role} | ${t.teamTitle}`} 
+              className="manager-modal-img" 
+              loading="lazy"
+            />
             <div className="manager-modal-name">{selectedManager.name}</div>
             <div className="manager-modal-role">{selectedManager.role}</div>
             <div className="manager-modal-field">

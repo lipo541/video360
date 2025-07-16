@@ -1,23 +1,14 @@
-import Home from '../pages/home/home';
-
-export const metadata = {
-  title: "Video360 Studio - 360° Bullet-Time ვიდეო ეფექტები | Matrix Shot საქართველოში",
-  description: "დაჯავშნეთ 360° bullet-time ვიდეო ეფექტები Video360 Studio-ში. საქართველოს ერთადერთი Matrix Shot სტუდია პროფესიონალური აღჭურვილობით. ღონისძიებები და მარკეტინგული კამპანიები.",
-  keywords: [
-    "360 ვიდეო დაჯავშნა",
-    "Matrix Shot საქართველო",
-    "bullet time booking",
-    "360 კამერა გაქირავება",
-    "ღონისძიების ვიდეო",
-    "პროფესიონალური ვიდეო სტუდია"
-  ],
-  openGraph: {
-    title: "Video360 Studio - 360° Matrix Shot ეფექტები",
-    description: "დაჯავშნეთ უნიკალური 360° bullet-time ვიდეო ეფექტები",
-    url: "https://video360studio.ge",
-  },
-};
+import SeoHead from '../components/SeoHead';
+import kaSEO from './seo/ka';
+import enSEO from './seo/en';
+import ruSEO from './seo/ru';
+import Main from '../components/main/main';
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <>
+      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
+      <Main />
+    </>
+  );
 }

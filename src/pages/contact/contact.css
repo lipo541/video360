@@ -1,3 +1,172 @@
+/* Modern, visually appealing styles for Contact page */
+.contact-container {
+  background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(26,54,93,0.12);
+  padding: 3rem 2rem 2rem 2rem;
+  margin: 3rem 0 2rem 0;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #1976d233;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-container h1 {
+  color: #1976d2;
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 16px #1976d233;
+  position: relative;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.contact-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1976d2, #ff8a65);
+  border-radius: 2px;
+}
+
+.contact-container p {
+  font-size: 1.22rem;
+  color: #333;
+  line-height: 1.7;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  position: relative;
+  padding: 0 16px;
+}
+
+.contact-content {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(26,54,93,0.12);
+  padding: 2rem 1.5rem;
+  flex: 1 1 320px;
+  min-width: 280px;
+  border: 2px solid #1976d233;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-info h2 {
+  color: #1976d2;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  position: relative;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.contact-info li {
+  color: #555;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-info p {
+  color: #555;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.map-container {
+  flex: 2 1 480px;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-wrapper {
+  background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(26,54,93,0.12);
+  padding: 1.5rem;
+  border: 2px solid #1976d233;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(26, 54, 93, 0.1);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+  .contact-content {
+    gap: 1.2rem;
+    flex-direction: column;
+  }
+  .map-wrapper {
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-container {
+    border-radius: 0;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+  .contact-container h1 {
+    font-size: 1.5rem;
+  }
+  .contact-container p {
+    font-size: 1rem;
+  }
+  .contact-info {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+  .map-wrapper {
+    padding: 0.5rem;
+    border-radius: 12px;
+  }
+  .map-wrapper iframe {
+    height: 220px;
+    border-radius: 8px;
+  }
+}
 /* Contact Page Styles */
 .contact-container {
   width: 100%;

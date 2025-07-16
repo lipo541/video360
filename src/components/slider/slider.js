@@ -177,22 +177,23 @@ export const Slider = () => {
                                 }}
                             />
                         ) : (
-                            <img 
-                                src={sliderData[currentSlide].image} 
-                                alt="360° ვიდეო სერვისები"
-                                style={{ 
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    opacity: imageLoaded[currentSlide] ? 1 : 0,
-                                    transition: 'opacity 0.3s ease-in-out'
-                                }}
-                                onLoad={() => handleImageLoad(currentSlide)}
-                                onError={() => handleImageError(currentSlide)}
-                                loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                            <img
+                              src={sliderData[currentSlide].image}
+                              alt={sliderData[currentSlide].alt || tSlider[currentSlide]?.alt || tSlider.sliderAlt || "360° ვიდეო ბუტკა ივენთზე | 360° video booth at event"}
+                              className="slider-img"
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                opacity: imageLoaded[currentSlide] ? 1 : 0,
+                                transition: 'opacity 0.3s ease-in-out'
+                              }}
+                              onLoad={() => handleImageLoad(currentSlide)}
+                              onError={() => handleImageError(currentSlide)}
+                              loading={currentSlide === 0 ? 'eager' : 'lazy'}
                             />
                         )}
                         <div className="slider-overlay"></div>

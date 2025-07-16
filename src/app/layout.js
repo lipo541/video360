@@ -1,5 +1,10 @@
+
 import { Inter, Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
+import kaSEO from "./seo/ka";
+import enSEO from "./seo/en";
+import ruSEO from "./seo/ru";
+import { useLanguage } from "../context/LanguageContext";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -78,6 +83,14 @@ import Footer from "../components/footer/footer";
 import { LanguageProvider } from "../context/LanguageContext";
 
 export default function RootLayout({ children }) {
+  // Language-aware SEO
+  let currentLang = 'KA';
+  if (typeof window !== 'undefined') {
+    const lang = window.localStorage.getItem('lang');
+    if (lang) currentLang = lang;
+  }
+  const seo = { KA: kaSEO, EN: enSEO, RU: ruSEO };
+  const meta = seo[currentLang] || kaSEO;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -120,8 +133,10 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="ka">
+    <html lang={currentLang.toLowerCase()}>
       <head>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

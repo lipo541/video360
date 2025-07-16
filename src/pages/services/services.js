@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import './services.css';
+import styles from './services.module.css';
 import { useLanguage } from '../../context/LanguageContext';
 import kaServices from '../../locales/services/ka.services';
 import enServices from '../../locales/services/en.services';
@@ -12,18 +12,24 @@ const Services = () => {
   const t = locales[currentLang.code] || kaServices;
 
   return (
-    <div className="services-container">
-      <h1>{t.title}</h1>
-      <p>{t.desc}</p>
-      <div className="services-content">
+    <section className={styles.servicesSection}>
+      <div className={styles.servicesHeader}>
+        <h1 className={styles.servicesTitle}>{t.title}</h1>
+        <p className={styles.servicesDesc}>{t.desc}</p>
+      </div>
+      <div className={styles.servicesList}>
         {t.items.map((item, idx) => (
-          <div className="service-item" key={idx}>
-            <h2>{item.title}</h2>
-            <p>{item.desc}</p>
+          <div className={styles.serviceCard} key={idx}>
+            <div className={styles.serviceCardHeader}>
+              <h2 className={styles.serviceCardTitle}>{item.title}</h2>
+            </div>
+            <div className={styles.serviceCardBody}>
+              <p className={styles.serviceCardDesc}>{item.desc}</p>
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
