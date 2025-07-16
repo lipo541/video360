@@ -1,3 +1,30 @@
+/* LanguageDropdown mobile positioning */
+.navbar-lang-mobile {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .navbar-lang-mobile {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0002;
+    padding: 4px 8px;
+  }
+  .menu-items .navbar-lang-mobile {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0002;
+    padding: 4px 8px;
+  }
+}
 /* navbar.css - Professional & Modern version - Fixed position for reliable sticky behavior */
 .header-container {
     position: fixed;

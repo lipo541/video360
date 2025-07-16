@@ -1,89 +1,76 @@
+
+"use client";
 import React from 'react';
 import './about.css';
+import { useLanguage } from '../../context/LanguageContext';
+import ka from '../../locales/aboutSection/ka.aboutSection.js';
+import en from '../../locales/aboutSection/en.aboutSection.js';
+import ru from '../../locales/aboutSection/ru.aboutSection.js';
 
 const About = () => {
+  const { currentLang } = useLanguage();
+  const [langCode, setLangCode] = React.useState(currentLang?.code?.toLowerCase());
+  const [t, setT] = React.useState(ka);
+
+  React.useEffect(() => {
+    const code = currentLang?.code?.toLowerCase();
+    setLangCode(code);
+    if (code === 'en') setT(en);
+    else if (code === 'ru') setT(ru);
+    else setT(ka);
+  }, [currentLang]);
+
   return (
     <div className="about-container">
       <div className="about-hero">
-        <h1 className="about-title">ჩვენ შესახებ</h1>
-        <p className="about-lead">
-          Video360 Studio არის ინოვაციური კომპანია, რომელიც საქართველოში 360° ფოტო-ვიდეო სერვისების სფეროში ლიდერია. ჩვენ ვქმნით დაუვიწყარ ემოციებს როგორც კერძო, ისე კორპორატიული ღონისძიებებისთვის, ვთავაზობთ სრულ ტექნიკურ მხარდაჭერას და ვნერგავთ თანამედროვე ტექნოლოგიებს.
-        </p>
+        <h1 className="about-title">{t.title}</h1>
+        <p className="about-lead">{t.lead}</p>
       </div>
       <div className="about-content">
         <div className="about-section about-team">
           <div className="section-icon">👥</div>
-          <h2>ვინ ვართ ჩვენ?</h2>
-          <p>
-            ჩვენი გუნდი შედგება გამოცდილი ოპერატორებისგან და კრეატიული პროფესიონალებისგან, რომლებიც მუდმივად ავითარებენ 360° ვიდეო ეფექტებს, bullet-time ტექნოლოგიას და ინოვაციურ ფოტო-ვიდეო პროდუქტებს. ჩვენთვის მთავარი ღირებულებაა ხარისხი, კლიენტზე ორიენტირებული სერვისი და ინდივიდუალური მიდგომა.
-          </p>
+          <h2>{t.team.title}</h2>
+          <p>{t.team.description}</p>
         </div>
         <div className="about-section about-services">
           <div className="section-icon">🎯</div>
-          <h2>რას გთავაზობთ?</h2>
+          <h2>{t.services.title}</h2>
           <div className="services-grid">
-            <div className="service-item">
-              <div className="service-icon">📹</div>
-              <h3>360° ვიდეო/ფოტო სერვისები</h3>
-              <p>უნიკალური bullet-time ეფექტი ნებისმიერი ღონისძიებისთვის</p>
-            </div>
-            <div className="service-item">
-              <div className="service-icon">🛒</div>
-              <h3>გაქირავება და გაყიდვა</h3>
-              <p>პროფესიონალური აპარატურა და სრული ტექნიკური მხარდაჭერა</p>
-            </div>
-            <div className="service-item">
-              <div className="service-icon">🎪</div>
-              <h3>ივენთების მენეჯმენტი</h3>
-              <p>მოქნილი პაკეტები, სწრაფი მონტაჟი და ადგილზე მომსახურება</p>
-            </div>
-            <div className="service-item">
-              <div className="service-icon">🎓</div>
-              <h3>კონსულტაცია და ტრენინგი</h3>
-              <p>დაგეხმარებით სწორი გადაწყვეტილების მიღებაში და ტექნოლოგიის ათვისებაში</p>
-            </div>
+            {t.services.items.map((item, i) => (
+              <div className="service-item" key={i}>
+                <div className="service-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
         <div className="about-section about-whyus">
           <div className="section-icon">⭐</div>
-          <h2>რატომ Video360 Studio?</h2>
+          <h2>{t.whyus.title}</h2>
           <div className="features-grid">
-            <div className="feature-item">
-              <div className="feature-icon">🏆</div>
-              <span>ერთადერთი 360° Matrix Shot სტუდია საქართველოში</span>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">🤖</div>
-              <span>სრულიად ავტომატიზებული და ინოვაციური ტექნოლოგია</span>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">💼</div>
-              <span>პროფესიონალური აღჭურვილობა და გამოცდილი გუნდი</span>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">💰</div>
-              <span>მომხმარებელზე მორგებული, გამჭვირვალე ფასები</span>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">⚡</div>
-              <span>სწრაფი რეაგირება და ინდივიდუალური მიდგომა</span>
-            </div>
+            {t.whyus.features.map((feature, i) => (
+              <div className="feature-item" key={i}>
+                <div className="feature-icon">{feature.icon}</div>
+                <span>{feature.text}</span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="about-section about-contact">
           <div className="section-icon">📞</div>
-          <h2>დაგვიკავშირდით</h2>
+          <h2>{t.contact.title}</h2>
           <div className="whatsapp-row">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="about-whatsapp-logo" />
             <a href="https://wa.me/+995593516842" target="_blank" rel="noopener noreferrer" className="about-whatsapp-btn">
-              <span className="whatsapp-number">+995 593 51 68 42</span>
+              <span className="whatsapp-number">{t.contact.whatsapp.number}</span>
             </a>
           </div>
         </div>
         <div className="location-section">
           <div className="section-icon">📍</div>
-          <h2>ჩვენი მდებარეობა</h2>
-          <p>სტუდია მდებარეობს თბილისის ცენტრში — მოსახერხებელი მისასვლელით და მყუდრო გარემოთი. გელოდებით, რომ ერთად შევქმნათ თქვენი უნიკალური 360° გამოცდილება!</p>
+          <h2>{t.location.title}</h2>
+          <p>{t.location.description}</p>
           <div className="map-container">
             <div className="map-wrapper">
               <iframe

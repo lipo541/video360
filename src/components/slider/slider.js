@@ -1,7 +1,12 @@
 'use client';
 
+
 import React, { useState, useEffect } from 'react';
 import './slider.css';
+import kaSlider from '../../locales/slider/ka.slider';
+import enSlider from '../../locales/slider/en.slider';
+import ruSlider from '../../locales/slider/ru.slider';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,39 +15,30 @@ export const Slider = () => {
     const [touchEnd, setTouchEnd] = useState(null);
     const [imageLoaded, setImageLoaded] = useState({});
     const [isTransitioning, setIsTransitioning] = useState(false);
-    
-    const sliderData = [
-        // {
-        //     type: "video",
-        //     videoUrl: "https://player.cloudinary.com/embed/?cloud_name=dgsemkiaf&public_id=samples%2Felephants&profile=cld-default&autoplay=true&muted=true&loop=true&controls=false&hideContextMenu=true&fluid=false&crop=fill&quality=auto&aspectRatio=16:9&width=100%25&height=100%25&fit=cover",
-        //     fallbackImage: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
-        //     fallbackGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
-        //     heading: "360° ვიდეო - ნახეთ შედეგი",
-        //     subheading: "რეალური მაგალითი 360° bullet-time ვიდეოსი - ასეთს მიიღებთ ჩვენი სერვისით",
-        //     cta: "ნახეთ მეტი მაგალითი"
-        // },
+    const { currentLang } = useLanguage();
+
+    // Static image data
+    const sliderImages = [
         {
             image: "https://res.cloudinary.com/dgsemkiaf/image/upload/v1751641372/360slider1_qpvz6a.jpg",
-            fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            heading: "360° ფოტო - ვიდეო სელფი",
-            subheading: "პროფესიონალური 360° bullet-time ეფექტი - მიღებთ წრიულად მბრუნავი კამერით უნიკალურ ვიდეოს",
-            cta: "დაგვიკავშირდით"
+            fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
         },
         {
             image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
-            fallbackGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-            heading: "Slow Motion 360° ვიდეო",
-            subheading: "ღონისძიებებისთვის სპეციალური 360° ეფექტი - სტუმრები მიიღებენ ვიდეოს, რომელიც ტრიალებს მათ გარშემო",
-            cta: "შეუკვეთეთ ახლავე"
+            fallbackGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
         },
         {
             image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
-            fallbackGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-            heading: "360° ფოტო - ვიდეო სელფი",
-            subheading: "თქვენი ღონისძიების სტუმრებისთვის პროფესიონალური 360° კონტენტი ჰოლივუდის ფილმების სტილით",
-            cta: "გაიგეთ მეტი"
-        },
+            fallbackGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+        }
     ];
+
+    // Get translation data by language
+    const sliderLocales = { GE: kaSlider, EN: enSlider, RU: ruSlider };
+    const tSlider = sliderLocales[currentLang.code] || kaSlider;
+
+    // Merge image and translation data
+    const sliderData = sliderImages.map((img, idx) => ({ ...img, ...tSlider[idx] }));
 
     // Preload all images (skip video slides)
     useEffect(() => {

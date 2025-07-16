@@ -1,25 +1,30 @@
+"use client";
 import React from 'react';
 import './ServicesSection.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '../../../context/LanguageContext';
+import kaServicesSection from '../../../locales/servicesSection/ka.servicesSection';
+import enServicesSection from '../../../locales/servicesSection/en.servicesSection';
+import ruServicesSection from '../../../locales/servicesSection/ru.servicesSection';
 
 const ServicesSection = () => {
+    const { currentLang } = useLanguage();
+    const locales = { GE: kaServicesSection, EN: enServicesSection, RU: ruServicesSection };
+    const t = locales[currentLang.code] || kaServicesSection;
     const services = [
         {
-            title: "360° ფოტო-ვიდეო სელფი შუშის ხიდზე",
-            description: "პროფესიონალური bullet-time ეფექტი - თქვენ დგახართ სცენაზე, ხოლო კამერა მბრუნავ ღეროზე წრიულად გიღებთ.",
+            ...t.services[0],
             slug: "glass-bridge",
             image: "/asset/glassbridge.jpg"
         },
         {
-            title: "360° ფოტო-ვიდეო სელფი ნარიყალაზე",
-            description: "სპეციალური 360° ფოტო-ზონა თქვენი ღონისძიებისთვის - სტუმრები მიიღებენ უნიკალურ ვიდეოებს.",
+            ...t.services[1],
             slug: "narikala",
             image: "/asset/kartlisdeda.jpg"
         },
         {
-            title: "360° ფოტო-ვიდეო სელფი რიყის პარკში",
-            description: "ნელი მოძრაობის 360° ეფექტი - ვიდეო, რომელიც ეპიკურად ტრიალებს გარშემო და გიღებთ.",
+            ...t.services[2],
             slug: "rike-park",
             image: "/asset/rikepark.jpg"
         },
@@ -27,7 +32,7 @@ const ServicesSection = () => {
 
     return (
         <section className="services-section">
-            <h2 className="section-title">360° ფოტო-ვიდეო სელფი</h2>
+            <h2 className="section-title">{t.sectionTitle}</h2>
             <div className="services-grid">
                 {services.map((service, index) => (
                     <div className="service-card" key={index}>
@@ -44,7 +49,7 @@ const ServicesSection = () => {
                         )}
                         <h3>{service.title}</h3>
                         <p>{service.description}</p>
-                        <Link href={`/services/${service.slug}`} className="learn-more">დეტალურად</Link>
+                        <Link href={`/services/${service.slug}`} className="learn-more">{t.learnMore}</Link>
                     </div>
                 ))}
             </div>

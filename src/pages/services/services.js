@@ -1,27 +1,27 @@
+"use client";
 import React from 'react';
 import './services.css';
+import { useLanguage } from '../../context/LanguageContext';
+import kaServices from '../../locales/services/ka.services';
+import enServices from '../../locales/services/en.services';
+import ruServices from '../../locales/services/ru.services';
 
 const Services = () => {
+  const { currentLang } = useLanguage();
+  const locales = { GE: kaServices, EN: enServices, RU: ruServices };
+  const t = locales[currentLang.code] || kaServices;
+
   return (
     <div className="services-container">
-      <h1>360° ვიდეო სერვისები</h1>
-      <p>ჩვენი ინოვაციური მომსახურება მოიცავს:</p>
-      
+      <h1>{t.title}</h1>
+      <p>{t.desc}</p>
       <div className="services-content">
-        <div className="service-item">
-          <h2>360° Matrix Shot ეფექტი</h2>
-          <p>ჰოლივუდური bullet-time ეფექტი - კამერა წრიულად ტრიალებს და იღებს უნიკალურ slow-motion ვიდეოს</p>
-        </div>
-        
-        <div className="service-item">
-          <h2>ღონისძიების ფოტო-ზონა</h2>
-          <p>სპეციალური 360° სტუდია თქვენი ღონისძიებისთვის - სტუმრები მიიღებენ უნიკალურ კონტენტს</p>
-        </div>
-        
-        <div className="service-item">
-          <h2>მოქნილი პაკეტები</h2>
-          <p>ერთი საათიდან მთელი დღის ღონისძიებამდე - შექმენით წარუშლელი მოგონებები</p>
-        </div>
+        {t.items.map((item, idx) => (
+          <div className="service-item" key={idx}>
+            <h2>{item.title}</h2>
+            <p>{item.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

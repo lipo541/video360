@@ -72,8 +72,10 @@ export const metadata = {
 };
 
 // Import components (we'll create these next)
+
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
+import { LanguageProvider } from "../context/LanguageContext";
 
 export default function RootLayout({ children }) {
   const jsonLd = {
@@ -126,13 +128,15 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${openSans.variable}`}>
-        <div className="layout-container">
-          <Navbar />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <LanguageProvider>
+          <div className="layout-container">
+            <Navbar />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );
