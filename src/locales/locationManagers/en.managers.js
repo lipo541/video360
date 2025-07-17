@@ -92,13 +92,7 @@ export default {
       experience: "5 years in marketing",
       bio: "Irakli Devdariani is Video360 Studio's location manager and sales specialist. He is responsible for on-site product sales, attracting clients, and customer service. Irakli ensures the best guest experience and actively participates in location promotion."
     },
-    {
-      name: "Andrea Laliashvili",
-      role: "Location manager",
-      desc: "Video360 Studio location manager.",
-      experience: "5 years in marketing",
-      bio: "Andrea Laliashvili is Video360 Studio's location manager and sales specialist. He is responsible for on-site product sales, attracting clients, and customer service. Andrea ensures the best guest experience and actively participates in location promotion."
-    },
+
     {
       name: "Badurika Gasoebi",
       role: "Location manager",
