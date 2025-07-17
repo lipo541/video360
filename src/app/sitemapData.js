@@ -1,49 +1,49 @@
 // Pure sitemap data for XML generation
 const sitemapData = [
   {
-    url: 'https://video360.ge',
+    url: 'https://video360photo.ge',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 1,
   },
   {
-    url: 'https://video360.ge/about',
+    url: 'https://video360photo.ge/about',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
-    url: 'https://video360.ge/services',
+    url: 'https://video360photo.ge/services',
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.9,
   },
   {
-    url: 'https://video360.ge/contact',
+    url: 'https://video360photo.ge/contact',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
-    url: 'https://video360.ge/services/glass-bridge',
+    url: 'https://video360photo.ge/services/glass-bridge',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
-    url: 'https://video360.ge/services/narikala',
+    url: 'https://video360photo.ge/services/narikala',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
-    url: 'https://video360.ge/services/rike-park',
+    url: 'https://video360photo.ge/services/rike-park',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
-    url: 'https://video360.ge/services/info360',
+    url: 'https://video360photo.ge/services/info360',
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
