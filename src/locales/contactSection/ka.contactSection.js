@@ -4,7 +4,7 @@ const contactSection = {
   infoTitle: "საკონტაქტო ინფორმაცია",
   info: [
     { icon: "📞", label: "ტელ:", value: "+995 593 51 68 42" },
-    { icon: "📧", label: "ელ.ფოსტა:", value: "info@video360studio.ge" },
+    { icon: "📧", label: "ელ.ფოსტა:", value: "info@video360photo.ge" },
     { icon: "📍", label: "მისამართი:", value: "თბილისი, საქართველო" }
   ],
   phone: "+995 593 51 68 42",

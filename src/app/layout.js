@@ -58,7 +58,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "ka_GE",
-    url: "https://video360studio.ge",
+    url: "https://video360photo.ge",
     title: "Video360 Studio - 360° Bullet-Time ვიდეო ეფექტები",
     description: "საქართველოს ერთადერთი 360° bullet-time ვიდეო სტუდია. ეპიკური Matrix Shot ეფექტები პროფესიონალური აღჭურვილობით.",
     siteName: "Video360 Studio",
@@ -72,7 +72,7 @@ export const metadata = {
     google: "google-site-verification-code",
   },
   alternates: {
-    canonical: "https://video360studio.ge",
+    canonical: "https://video360photo.ge",
   },
 };
 
@@ -96,9 +96,9 @@ export default function RootLayout({ children }) {
     '@type': 'LocalBusiness',
     name: 'Video360 Studio',
     description: 'საქართველოს ერთადერთი 360° bullet-time ვიდეო სტუდია',
-    url: 'https://video360studio.ge',
+    url: 'https://video360photo.ge',
     telephone: '+995555360360',
-    email: 'info@video360studio.ge',
+    email: 'info@video360photo.ge',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'თბილისი',

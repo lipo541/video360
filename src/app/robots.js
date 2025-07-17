@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://video360studio.ge/sitemap.xml',
+    sitemap: 'https://video360photo.ge/sitemap.xml',
   }
 }

@@ -4,7 +4,7 @@ const contactSection = {
   infoTitle: "Contact Information",
   info: [
     { icon: "📞", label: "Phone:", value: "+995 593 51 68 42" },
-    { icon: "📧", label: "Email:", value: "info@video360studio.ge" },
+    { icon: "📧", label: "Email:", value: "info@video360photo.ge" },
     { icon: "📍", label: "Address:", value: "Tbilisi, Georgia" }
   ],
   phone: "+995 593 51 68 42",
