@@ -5,6 +5,7 @@ import kaSEO from "./seo/ka";
 import enSEO from "./seo/en";
 import ruSEO from "./seo/ru";
 import { useLanguage } from "../context/LanguageContext";
+import { usePathname } from 'next/navigation';
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -132,7 +133,7 @@ export default function RootLayout({ children }) {
     }
   };
 
-  // Detect current path for canonical (works in browser and SSR)
+  // Use Next.js App Router's usePathname for SSR/CSR-safe canonical
   let canonicalUrl = "https://video360photo.ge";
   if (typeof window !== 'undefined') {
     let path = window.location.pathname;
@@ -141,6 +142,18 @@ export default function RootLayout({ children }) {
     if (currentLang === 'RU' && !path.startsWith('/ru')) path = '/ru' + (path === '/' ? '' : path);
     if (currentLang === 'KA' && (path.startsWith('/en') || path.startsWith('/ru'))) path = '/';
     canonicalUrl = `https://video360photo.ge${path}`;
+  } else {
+    // SSR: fallback to usePathname if available
+    try {
+      const pathname = require('next/navigation').usePathname?.() || '/';
+      let path = pathname;
+      if (currentLang === 'EN' && !path.startsWith('/en')) path = '/en' + (path === '/' ? '' : path);
+      if (currentLang === 'RU' && !path.startsWith('/ru')) path = '/ru' + (path === '/' ? '' : path);
+      if (currentLang === 'KA' && (path.startsWith('/en') || path.startsWith('/ru'))) path = '/';
+      canonicalUrl = `https://video360photo.ge${path}`;
+    } catch (e) {
+      canonicalUrl = "https://video360photo.ge";
+    }
   }
 
   return (
