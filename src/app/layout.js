@@ -132,11 +132,23 @@ export default function RootLayout({ children }) {
     }
   };
 
+  // Detect current path for canonical (works in browser and SSR)
+  let canonicalUrl = "https://video360photo.ge";
+  if (typeof window !== 'undefined') {
+    let path = window.location.pathname;
+    // Multilingual: add /en or /ru if needed
+    if (currentLang === 'EN' && !path.startsWith('/en')) path = '/en' + (path === '/' ? '' : path);
+    if (currentLang === 'RU' && !path.startsWith('/ru')) path = '/ru' + (path === '/' ? '' : path);
+    if (currentLang === 'KA' && (path.startsWith('/en') || path.startsWith('/ru'))) path = '/';
+    canonicalUrl = `https://video360photo.ge${path}`;
+  }
+
   return (
     <html lang={currentLang.toLowerCase()}>
       <head>
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
+        <link rel="canonical" href={canonicalUrl} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
