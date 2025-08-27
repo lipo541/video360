@@ -9,7 +9,8 @@ import './ContactSection.css';
 
 const ContactSection = () => {
     const { currentLang } = useLanguage();
-    const t = currentLang.code === 'EN' ? en : currentLang.code === 'RU' ? ru : ka;
+    const code = currentLang.code;
+    const t = code === 'en' ? en : code === 'ru' ? ru : ka;
 
     return (
         <section className="contact-section">

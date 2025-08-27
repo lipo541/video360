@@ -9,8 +9,9 @@ import ruFooter from '../../locales/footer/ru.footer';
 
 const Footer = () => {
     const { currentLang } = useLanguage();
-    const locales = { GE: kaFooter, EN: enFooter, RU: ruFooter };
+    const locales = { ka: kaFooter, en: enFooter, ru: ruFooter };
     const t = locales[currentLang.code] || kaFooter;
+    const base = `/${currentLang.code}`;
     return (
         <footer className="footer">
             <div className="footer-container">
@@ -21,9 +22,10 @@ const Footer = () => {
                 <div className="footer-section">
                     <h4>{t.servicesTitle}</h4>
                     <ul>
-                        {t.services.map((item, idx) => (
-                            <li key={idx}><Link href={item.href}>{item.label}</Link></li>
-                        ))}
+                        {t.services.map((item, idx) => {
+                            const href = item.href.startsWith('/') ? `${base}${item.href}` : item.href;
+                            return <li key={idx}><Link href={href}>{item.label}</Link></li>;
+                        })}
                     </ul>
                 </div>
                 <div className="footer-section">

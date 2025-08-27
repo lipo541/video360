@@ -10,8 +10,9 @@ import ruServicesSection from '../../../locales/servicesSection/ru.servicesSecti
 
 const ServicesSection = () => {
     const { currentLang } = useLanguage();
-    const locales = { GE: kaServicesSection, EN: enServicesSection, RU: ruServicesSection };
+    const locales = { ka: kaServicesSection, en: enServicesSection, ru: ruServicesSection };
     const t = locales[currentLang.code] || kaServicesSection;
+    const base = `/${currentLang.code}`;
     const services = [
         {
             ...t.services[0],
@@ -49,7 +50,7 @@ const ServicesSection = () => {
                         )}
                         <h3>{service.title}</h3>
                         <p>{service.description}</p>
-                        <Link href={`/services/${service.slug}`} className="learn-more">{t.learnMore}</Link>
+                        <Link href={`${base}/services/${service.slug}`} className="learn-more">{t.learnMore}</Link>
                     </div>
                 ))}
             </div>

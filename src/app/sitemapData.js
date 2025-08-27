@@ -1,50 +1,52 @@
-// Pure sitemap data for XML generation
+// Pure sitemap data (canonical Georgian paths). Locale variants generated dynamically.
+// Freeze lastModified to a stable date to avoid unnecessary crawl churn; update manually when content changes.
+const STABLE_LASTMOD = '2025-08-01';
 const sitemapData = [
   {
     url: 'https://video360photo.ge',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 1,
   },
   {
     url: 'https://video360photo.ge/about',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.8,
   },
   {
     url: 'https://video360photo.ge/services',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'weekly',
     priority: 0.9,
   },
   {
     url: 'https://video360photo.ge/contact',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     url: 'https://video360photo.ge/services/glass-bridge',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     url: 'https://video360photo.ge/services/narikala',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     url: 'https://video360photo.ge/services/rike-park',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   },
   {
     url: 'https://video360photo.ge/services/info360',
-    lastModified: new Date(),
+  lastModified: STABLE_LASTMOD,
     changeFrequency: 'monthly',
     priority: 0.7,
   },

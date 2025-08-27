@@ -106,8 +106,9 @@ const managers = [
 
 const LocationManagers = () => {
   const { currentLang } = useLanguage();
-  const t = currentLang.code === 'EN' ? en : currentLang.code === 'RU' ? ru : ka;
-  const managersT = currentLang.code === 'EN' ? enManagers : currentLang.code === 'RU' ? ruManagers : kaManagers;
+  const code = currentLang.code;
+  const t = code === 'en' ? en : code === 'ru' ? ru : ka;
+  const managersT = code === 'en' ? enManagers : code === 'ru' ? ruManagers : kaManagers;
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedManager, setSelectedManager] = useState(null);
   const [showAllManagers, setShowAllManagers] = useState(false);

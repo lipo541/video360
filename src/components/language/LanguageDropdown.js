@@ -23,13 +23,13 @@ const LanguageDropdown = () => {
             </button>
             {langDropdown && (
                 <div className="lang-dropdown-list" role="listbox">
-                    <button className={`lang-dropdown-option${currentLang.code === 'GE' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'GE', country: 'GE', label: 'GE' }); setLangDropdown(false); }}>
-                        <ReactCountryFlag countryCode="GE" svg style={{ width: '20px', height: '14px', borderRadius: '2px', marginRight: 4 }} title="Georgia" /> GE
+                    <button className={`lang-dropdown-option${currentLang.code === 'ka' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'ka' }); setLangDropdown(false); }}>
+                        <ReactCountryFlag countryCode="GE" svg style={{ width: '20px', height: '14px', borderRadius: '2px', marginRight: 4 }} title="Georgian" /> KA
                     </button>
-                    <button className={`lang-dropdown-option${currentLang.code === 'EN' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'EN', country: 'GB', label: 'EN' }); setLangDropdown(false); }}>
+                    <button className={`lang-dropdown-option${currentLang.code === 'en' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'en' }); setLangDropdown(false); }}>
                         <ReactCountryFlag countryCode="GB" svg style={{ width: '20px', height: '14px', borderRadius: '2px', marginRight: 4 }} title="English" /> EN
                     </button>
-                    <button className={`lang-dropdown-option${currentLang.code === 'RU' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'RU', country: 'RU', label: 'RU' }); setLangDropdown(false); }}>
+                    <button className={`lang-dropdown-option${currentLang.code === 'ru' ? ' active' : ''}`} onClick={() => { setCurrentLang({ code: 'ru' }); setLangDropdown(false); }}>
                         <ReactCountryFlag countryCode="RU" svg style={{ width: '20px', height: '14px', borderRadius: '2px', marginRight: 4 }} title="Russian" /> RU
                     </button>
                 </div>

@@ -3,23 +3,19 @@ import styles from './rike-park.module.css';
 import '../ServiceLocation.css';
 import { useContext } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
+import { buildBreadcrumbLd, buildWebPageLd } from '../../../lib/seo/structuredData';
 import kaRikePark from '../../../locales/rikePark/ka.rikePark';
 import enRikePark from '../../../locales/rikePark/en.rikePark';
 import ruRikePark from '../../../locales/rikePark/ru.rikePark';
-import SeoHead from '../../../components/SeoHead';
-import kaSEO from '../../seo/rike-park.ka';
-import enSEO from '../../seo/rike-park.en';
-import ruSEO from '../../seo/rike-park.ru';
 
 export default function RikeParkService() {
   const { currentLang } = useLanguage();
   let t = kaRikePark;
-  if (currentLang.code === 'EN') t = enRikePark;
-  if (currentLang.code === 'RU') t = ruRikePark;
+  if (currentLang.code === 'en') t = enRikePark;
+  if (currentLang.code === 'ru') t = ruRikePark;
 
   return (
     <>
-      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
       <div className={styles.container}>
         <div className={styles.rikeParkWrapper}>
           <div className={styles.rikeParkHeader}>
@@ -103,6 +99,43 @@ export default function RikeParkService() {
           </div>
         </div>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: t.title,
+            description: t.desc,
+            inLanguage: currentLang.code,
+            areaServed: 'Georgia',
+            provider: { '@id': 'https://video360photo.ge/#organization' },
+            serviceType: '360° Bullet-Time Video',
+            offers: (t.prices?.list || []).map(p => ({
+              '@type': 'Offer',
+              priceCurrency: 'GEL',
+              price: (p.value || '').replace(/[^0-9.,]/g,'').replace(',','.'),
+              availability: 'https://schema.org/InStock'
+            }))
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbLd(currentLang.code,[
+            { key:'home', href:'/' },
+            { key:'services', href:'/services' },
+            { key:'services', href:'/services/rike-park', name: t.title }
+          ]))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildWebPageLd(currentLang.code,t.title,'/services/rike-park'))
+        }}
+      />
     </>
   );
 }

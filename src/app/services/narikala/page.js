@@ -5,19 +5,15 @@ import kaNarikala from '../../../locales/narikala/ka.narikala';
 import enNarikala from '../../../locales/narikala/en.narikala';
 import ruNarikala from '../../../locales/narikala/ru.narikala';
 import { useLanguage } from '../../../context/LanguageContext';
-import SeoHead from '../../../components/SeoHead';
-import kaSEO from '../../seo/narikala.ka';
-import enSEO from '../../seo/narikala.en';
-import ruSEO from '../../seo/narikala.ru';
+import { buildBreadcrumbLd, buildWebPageLd } from '../../../lib/seo/structuredData';
 
 export default function NarikalaService() {
   const { currentLang } = useLanguage();
-  const locales = { GE: kaNarikala, EN: enNarikala, RU: ruNarikala };
+  const locales = { ka: kaNarikala, en: enNarikala, ru: ruNarikala };
   const t = locales[currentLang.code] || kaNarikala;
 
   return (
     <>
-      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
       <div className="container">
         <div className={styles.narikalaWrapper}>
           <div className={styles.narikalaHeader}>
@@ -96,6 +92,43 @@ export default function NarikalaService() {
           </div>
         </div>
       </div>
+  <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: t.title,
+            description: t.desc,
+            inLanguage: currentLang.code,
+            areaServed: 'Georgia',
+            provider: { '@id': 'https://video360photo.ge/#organization' },
+            serviceType: '360° Bullet-Time Video',
+            offers: (t.prices?.list || []).map(p => ({
+              '@type': 'Offer',
+              priceCurrency: 'GEL',
+              price: (p.value || '').replace(/[^0-9.,]/g,'').replace(',','.'),
+              availability: 'https://schema.org/InStock'
+            }))
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbLd(currentLang.code,[
+            { key:'home', href:'/' },
+            { key:'services', href:'/services' },
+            { key:'services', href:'/services/narikala', name: t.title }
+          ]))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildWebPageLd(currentLang.code,t.title,'/services/narikala'))
+        }}
+      />
     </>
   );
 }

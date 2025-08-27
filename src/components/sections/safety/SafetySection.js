@@ -34,7 +34,7 @@ const SafetySection = () => {
             </li>
           ))}
         </ul>
-        <a href="/services/info360" className="safety-more-btn">{t.more}</a>
+  <a href={`/${currentLang.code}/services/info360`} className="safety-more-btn">{t.more}</a>
       </div>
     </section>
   );

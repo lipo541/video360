@@ -5,19 +5,15 @@ import kaInfo360 from '../../../locales/info360/ka.info360';
 import enInfo360 from '../../../locales/info360/en.info360';
 import ruInfo360 from '../../../locales/info360/ru.info360';
 import { useLanguage } from '../../../context/LanguageContext';
-import SeoHead from '../../../components/SeoHead';
-import kaSEO from '../../seo/info360.ka';
-import enSEO from '../../seo/info360.en';
-import ruSEO from '../../seo/info360.ru';
+import { buildBreadcrumbLd, buildWebPageLd } from '../../../lib/seo/structuredData';
 
 export default function Info360Page() {
   const { currentLang } = useLanguage();
-  const locales = { GE: kaInfo360, EN: enInfo360, RU: ruInfo360 };
+  const locales = { ka: kaInfo360, en: enInfo360, ru: ruInfo360 };
   const t = locales[currentLang.code] || kaInfo360;
 
   return (
     <>
-      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
       <div className={styles.info360Wrapper}>
         <h1 className={styles.info360Title}>{t.title}</h1>
         <p className={styles.info360Desc}>{t.desc}</p>
@@ -80,6 +76,43 @@ export default function Info360Page() {
           </div>
         </section>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: t.title,
+            description: t.desc,
+            inLanguage: currentLang.code,
+            areaServed: 'Georgia',
+            provider: { '@id': 'https://video360photo.ge/#organization' },
+            serviceType: '360° Info Service',
+            offers: (t.pricing || []).map(p => ({
+              '@type': 'Offer',
+              priceCurrency: 'GEL',
+              price: (p.value || '').replace(/[^0-9.,]/g,'').replace(',','.'),
+              availability: 'https://schema.org/InStock'
+            }))
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbLd(currentLang.code,[
+            { key:'home', href:'/' },
+            { key:'services', href:'/services' },
+            { key:'services', href:'/services/info360', name: t.title }
+          ]))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildWebPageLd(currentLang.code,t.title,'/services/info360'))
+        }}
+      />
     </>
   );
 }

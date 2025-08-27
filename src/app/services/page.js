@@ -1,16 +1,26 @@
-import SeoHead from '../../components/SeoHead';
-import kaSEO from '../seo/services.ka';
-import enSEO from '../seo/services.en';
-import ruSEO from '../seo/services.ru';
-import { useLanguage } from '../../context/LanguageContext';
+import { buildPageMetadata } from '../../lib/seo/metaHelper';
 import Services from '../../pages/services/services';
+import { buildBreadcrumbLd, buildWebPageLd } from '../../lib/seo/structuredData';
 
 
-export default function ServicesPage() {
-  return (
-    <>
-      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
-      <Services />
-    </>
-  );
+export const dynamic = 'force-static';
+export async function generateMetadata(props) {
+  const params = await props?.params;
+  const locale = params?.locale || 'ka';
+  return buildPageMetadata(locale,'services','/services');
+}
+
+export default function ServicesPage({ params }) {
+  const locale = params?.locale || 'ka';
+  const breadcrumb = buildBreadcrumbLd(locale,[
+    { key:'home', href:'/' },
+    { key:'services', href:'/services' }
+  ]);
+  const title = locale === 'ka' ? 'სერვისები' : locale === 'ru' ? 'Услуги' : 'Services';
+  const webPage = buildWebPageLd(locale,title,'/services');
+  return <>
+    <Services />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+  </>;
 }

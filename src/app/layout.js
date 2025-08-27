@@ -1,9 +1,5 @@
 import { Inter, Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
-import kaSEO from "./seo/ka";
-import enSEO from "./seo/en";
-import ruSEO from "./seo/ru";
-import { useLanguage } from "../context/LanguageContext";
 // Path-based hooks avoided here to keep this a server component for metadata export.
 
 const inter = Inter({ 
@@ -81,18 +77,48 @@ export const metadata = {
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 import { LanguageProvider } from "../context/LanguageContext";
+import { getSeo } from "../lib/seo/seoData";
+
+// Derive locale from request path server-side (App Router passes segment in children tree). We inspect headers only as fallback.
+import { headers } from 'next/headers';
+
+function detectInitialLocale() {
+  const h = headers();
+  // Middleware injects x-site-locale for locale-prefixed paths.
+  const injected = h.get('x-site-locale');
+  if (injected) return injected;
+  // Fallback to accept-language negotiation (rare: root / before redirect or static asset) 
+  const accept = h.get('accept-language') || '';
+  if (/^en/i.test(accept)) return 'en';
+  if (/^ru/i.test(accept)) return 'ru';
+  return 'ka';
+}
 
 export default function RootLayout({ children }) {
-  // Server component: can't read localStorage; default to KA. Client-side language switch handled elsewhere.
-  const currentLang = 'KA';
-  const seo = { KA: kaSEO, EN: enSEO, RU: ruSEO };
-  const meta = seo[currentLang] || kaSEO;
+  const initialLocale = detectInitialLocale();
+  const localizedHome = getSeo(initialLocale,'home');
+  const serviceKeys = ['services/narikala','services/glass-bridge','services/rike-park','services/info360'];
+  const offers = serviceKeys.map(k => {
+    const m = getSeo(initialLocale, k);
+    return {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: m.title,
+        description: m.description,
+        inLanguage: initialLocale
+      }
+    };
+  });
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Video360 Studio',
-    description: 'საქართველოს ერთადერთი 360° bullet-time ვიდეო სტუდია',
+    description: localizedHome.description || '360° video studio',
     url: 'https://video360photo.ge',
+    '@id': 'https://video360photo.ge/#organization',
+    logo: 'https://video360photo.ge/images/slider/logomain.jpeg',
+    inLanguage: initialLocale,
     telephone: '+995555360360',
     email: 'info@video360photo.ge',
     address: {
@@ -108,40 +134,16 @@ export default function RootLayout({ children }) {
     },
     openingHours: 'Mo-Su 10:00-22:00',
     priceRange: '$$',
-    serviceArea: {
-      '@type': 'Country',
-      name: 'Georgia'
-    },
+    serviceArea: { '@type': 'Country', name: 'Georgia' },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: '360° Video Services',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: '360° Bullet-Time Video',
-            description: 'Matrix Shot ეფექტები პროფესიონალური აღჭურვილობით'
-          }
-        }
-      ]
+      name: initialLocale === 'ka' ? '360° სერვისები' : initialLocale === 'ru' ? '360° сервисы' : '360° Services',
+      itemListElement: offers
     }
   };
 
-  // Static canonical (could be enhanced via generateMetadata if per-path needed)
-  const canonicalUrl = 'https://video360photo.ge';
-
   return (
-    <html lang={currentLang.toLowerCase()}>
-      <head>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
+    <html lang={initialLocale}>
       <body className={`${inter.variable} ${roboto.variable} ${openSans.variable}`}>
         <LanguageProvider>
           <div className="layout-container">
@@ -151,6 +153,10 @@ export default function RootLayout({ children }) {
             </main>
             <Footer />
           </div>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
         </LanguageProvider>
       </body>
     </html>

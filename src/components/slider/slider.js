@@ -34,7 +34,7 @@ export const Slider = () => {
     ];
 
     // Get translation data by language
-    const sliderLocales = { GE: kaSlider, EN: enSlider, RU: ruSlider };
+    const sliderLocales = { ka: kaSlider, en: enSlider, ru: ruSlider };
     const tSlider = sliderLocales[currentLang.code] || kaSlider;
 
     // Merge image and translation data

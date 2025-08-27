@@ -8,7 +8,7 @@ import ruServices from '../../locales/services/ru.services';
 
 const Services = () => {
   const { currentLang } = useLanguage();
-  const locales = { GE: kaServices, EN: enServices, RU: ruServices };
+  const locales = { ka: kaServices, en: enServices, ru: ruServices };
   const t = locales[currentLang.code] || kaServices;
 
   return (

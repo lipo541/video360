@@ -16,8 +16,9 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const router = useRouter();
     const { currentLang } = useLanguage();
-    const locales = { GE: ka, EN: en, RU: ru };
+    const locales = { ka, en, ru };
     const t = locales[currentLang.code] || ka;
+    const base = `/${currentLang.code}`;
 
     React.useEffect(() => {
         const handleClickOutside = (event) => {
@@ -49,7 +50,7 @@ const Navbar = () => {
     return (
         <>
             <div className="header-container">
-                <div className="logo" onClick={() => router.push('/')}> 
+                <div className="logo" onClick={() => router.push(base)}> 
                     <Image 
                         src="/images/slider/logomain.jpeg" 
                         alt="Video360 Studio" 
@@ -62,10 +63,10 @@ const Navbar = () => {
                 {/* Mobile menu overlay */}
                 {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)}></div>}
                 <div className={`menu-items ${menuOpen ? 'open' : ''}`}> 
-                    <Link href="/" onClick={() => setMenuOpen(false)}>{t.home}</Link>
-                    <Link href="/services" onClick={() => setMenuOpen(false)}>{t.services}</Link>
-                    <Link href="/about" onClick={() => setMenuOpen(false)}>{t.about}</Link>
-                    <Link href="/contact" onClick={() => setMenuOpen(false)}>{t.contact}</Link>
+                    <Link href={base} onClick={() => setMenuOpen(false)}>{t.home}</Link>
+                    <Link href={`${base}/services`} onClick={() => setMenuOpen(false)}>{t.services}</Link>
+                    <Link href={`${base}/about`} onClick={() => setMenuOpen(false)}>{t.about}</Link>
+                    <Link href={`${base}/contact`} onClick={() => setMenuOpen(false)}>{t.contact}</Link>
                     <div className="navbar-lang-mobile"><LanguageDropdown /></div>
                 </div>
                 <div 

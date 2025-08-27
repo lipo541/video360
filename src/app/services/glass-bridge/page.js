@@ -5,19 +5,15 @@ import kaGlassBridge from '../../../locales/glassBridge/ka.glassBridge';
 import enGlassBridge from '../../../locales/glassBridge/en.glassBridge';
 import ruGlassBridge from '../../../locales/glassBridge/ru.glassBridge';
 import { useLanguage } from '../../../context/LanguageContext';
-import SeoHead from '../../../components/SeoHead';
-import kaSEO from '../../seo/glass-bridge.ka';
-import enSEO from '../../seo/glass-bridge.en';
-import ruSEO from '../../seo/glass-bridge.ru';
+import { buildBreadcrumbLd, buildWebPageLd } from '../../../lib/seo/structuredData';
 
 export default function GlassBridgeService() {
   const { currentLang } = useLanguage();
-  const locales = { GE: kaGlassBridge, EN: enGlassBridge, RU: ruGlassBridge };
+  const locales = { ka: kaGlassBridge, en: enGlassBridge, ru: ruGlassBridge };
   const t = locales[currentLang.code] || kaGlassBridge;
 
   return (
     <>
-      <SeoHead seoKA={kaSEO} seoEN={enSEO} seoRU={ruSEO} />
       <div className="container">
         <div className={styles.glassBridgeWrapper}>
           <div className={styles.glassBridgeHeader}>
@@ -101,6 +97,43 @@ export default function GlassBridgeService() {
           </div>
         </div>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: t.title,
+            description: t.desc,
+            inLanguage: currentLang.code,
+            areaServed: 'Georgia',
+            provider: { '@id': 'https://video360photo.ge/#organization' },
+            serviceType: '360° Bullet-Time Video',
+            offers: (t.prices?.list || []).map(p => ({
+              '@type': 'Offer',
+              priceCurrency: 'GEL',
+              price: (p.value || '').replace(/[^0-9.,]/g,'').replace(',','.'),
+              availability: 'https://schema.org/InStock'
+            }))
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbLd(currentLang.code,[
+            { key:'home', href:'/' },
+            { key:'services', href:'/services' },
+            { key:'services', href:'/services/glass-bridge', name: t.title }
+          ]))
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildWebPageLd(currentLang.code,t.title,'/services/glass-bridge'))
+        }}
+      />
     </>
   );
 }
