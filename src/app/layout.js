@@ -1,11 +1,10 @@
-
 import { Inter, Roboto, Open_Sans } from "next/font/google";
 import "./globals.css";
 import kaSEO from "./seo/ka";
 import enSEO from "./seo/en";
 import ruSEO from "./seo/ru";
 import { useLanguage } from "../context/LanguageContext";
-import { usePathname } from 'next/navigation';
+// Path-based hooks avoided here to keep this a server component for metadata export.
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -84,12 +83,8 @@ import Footer from "../components/footer/footer";
 import { LanguageProvider } from "../context/LanguageContext";
 
 export default function RootLayout({ children }) {
-  // Language-aware SEO
-  let currentLang = 'KA';
-  if (typeof window !== 'undefined') {
-    const lang = window.localStorage.getItem('lang');
-    if (lang) currentLang = lang;
-  }
+  // Server component: can't read localStorage; default to KA. Client-side language switch handled elsewhere.
+  const currentLang = 'KA';
   const seo = { KA: kaSEO, EN: enSEO, RU: ruSEO };
   const meta = seo[currentLang] || kaSEO;
   const jsonLd = {
@@ -133,28 +128,8 @@ export default function RootLayout({ children }) {
     }
   };
 
-  // Use Next.js App Router's usePathname for SSR/CSR-safe canonical
-  let canonicalUrl = "https://video360photo.ge";
-  if (typeof window !== 'undefined') {
-    let path = window.location.pathname;
-    // Multilingual: add /en or /ru if needed
-    if (currentLang === 'EN' && !path.startsWith('/en')) path = '/en' + (path === '/' ? '' : path);
-    if (currentLang === 'RU' && !path.startsWith('/ru')) path = '/ru' + (path === '/' ? '' : path);
-    if (currentLang === 'KA' && (path.startsWith('/en') || path.startsWith('/ru'))) path = '/';
-    canonicalUrl = `https://video360photo.ge${path}`;
-  } else {
-    // SSR: fallback to usePathname if available
-    try {
-      const pathname = require('next/navigation').usePathname?.() || '/';
-      let path = pathname;
-      if (currentLang === 'EN' && !path.startsWith('/en')) path = '/en' + (path === '/' ? '' : path);
-      if (currentLang === 'RU' && !path.startsWith('/ru')) path = '/ru' + (path === '/' ? '' : path);
-      if (currentLang === 'KA' && (path.startsWith('/en') || path.startsWith('/ru'))) path = '/';
-      canonicalUrl = `https://video360photo.ge${path}`;
-    } catch (e) {
-      canonicalUrl = "https://video360photo.ge";
-    }
-  }
+  // Static canonical (could be enhanced via generateMetadata if per-path needed)
+  const canonicalUrl = 'https://video360photo.ge';
 
   return (
     <html lang={currentLang.toLowerCase()}>
