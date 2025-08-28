@@ -1,4 +1,4 @@
-import { Inter, Roboto, Open_Sans } from "next/font/google";
+import { Inter, Roboto, Open_Sans, Noto_Sans } from "next/font/google";
 import "./globals.css";
 // Path-based hooks avoided here to keep this a server component for metadata export.
 
@@ -16,6 +16,13 @@ const roboto = Roboto({
 const openSans = Open_Sans({
   subsets: ["latin"],
   variable: "--font-open-sans"
+});
+
+// Heading font with Georgian support
+const noto = Noto_Sans({
+  subsets: ["latin","georgian"],
+  weight: ['400','500','600','700'],
+  variable: "--font-heading"
 });
 
 export const metadata = {
@@ -82,20 +89,18 @@ import { getSeo } from "../lib/seo/seoData";
 // Derive locale from request path server-side (App Router passes segment in children tree). We inspect headers only as fallback.
 import { headers } from 'next/headers';
 
-function detectInitialLocale() {
-  const h = headers();
-  // Middleware injects x-site-locale for locale-prefixed paths.
+async function detectInitialLocale() {
+  const h = await headers();
   const injected = h.get('x-site-locale');
   if (injected) return injected;
-  // Fallback to accept-language negotiation (rare: root / before redirect or static asset) 
   const accept = h.get('accept-language') || '';
   if (/^en/i.test(accept)) return 'en';
   if (/^ru/i.test(accept)) return 'ru';
   return 'ka';
 }
 
-export default function RootLayout({ children }) {
-  const initialLocale = detectInitialLocale();
+export default async function RootLayout({ children }) {
+  const initialLocale = await detectInitialLocale();
   const localizedHome = getSeo(initialLocale,'home');
   const serviceKeys = ['services/narikala','services/glass-bridge','services/rike-park','services/info360'];
   const offers = serviceKeys.map(k => {
@@ -144,7 +149,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang={initialLocale}>
-      <body className={`${inter.variable} ${roboto.variable} ${openSans.variable}`}>
+  <body className={`${inter.variable} ${roboto.variable} ${openSans.variable} ${noto.variable}`}>
         <LanguageProvider>
           <div className="layout-container">
             <Navbar />

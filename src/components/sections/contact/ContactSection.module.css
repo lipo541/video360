@@ -1,0 +1,93 @@
+/* Modern Contact Section */
+
+.wrapper {
+  --ct-accent:#ff475a;
+  --ct-accent-2:#ff7a45;
+  --ct-accent-rgb:255 71 90;
+  --ct-text:#1f252d;
+  --ct-text-dim:#586874;
+  --ct-surface:#ffffff;
+  --ct-surface-alt:#f6f9fc;
+  --ct-border:#e0e6ed;
+  --ct-border-strong:#cfd7e0;
+  --ct-focus:0 0 0 2px rgba(var(--ct-accent-rgb)/.55),0 0 0 5px rgba(var(--ct-accent-rgb)/.25);
+  --ct-transition:cubic-bezier(.4,0,.2,1);
+  position:relative;
+  max-width:1280px;
+  /* Added top margin for spacing below navbar */
+  margin:clamp(2.2rem,4vh,3.2rem) auto clamp(3rem,4vw,4.6rem);
+  padding:clamp(2.2rem,2.8vw,3.2rem) clamp(.9rem,1.8vw,2.1rem) clamp(2.6rem,3vw,3.6rem);
+  background:linear-gradient(135deg,#ffffff,#f5f8fb);
+  border:1px solid var(--ct-border);
+  border-radius:26px;
+  box-shadow:0 6px 28px -12px rgba(31,42,51,.18),0 2px 10px -6px rgba(31,42,51,.12);
+  display:flex;
+  flex-direction:column;
+  gap:clamp(2rem,2.6vw,2.8rem);
+  overflow:hidden;
+}
+.wrapper:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 18%,rgba(var(--ct-accent-rgb)/.18),transparent 65%);pointer-events:none;}
+
+/* wide variant for larger desktop contexts (e.g., About page) */
+.wide { max-width:1680px; padding:clamp(3rem,3.2vw,4rem) clamp(2rem,2.8vw,3.4rem) clamp(3.4rem,3.6vw,4.6rem); border-radius:40px; }
+.wide { margin-top:clamp(2.5rem,4vh,4rem); }
+.wide .header { max-width:1040px; }
+.wide .title { font-size:clamp(2.2rem,1.6rem + 2.4vw,3.1rem); }
+.wide .layout { grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); }
+.wide .panel, .wide .call { border-radius:30px; }
+.wide .phoneBtn { font-size:.82rem; padding:1.05rem 2.1rem; }
+.wide .bigPhone { font-size:1.5rem; }
+
+.header{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:900px;margin:0 auto;gap:.9rem;}
+.title{font-family:var(--font-heading,inherit);font-size:clamp(1.9rem,1.45rem + 1.9vw,2.7rem);font-weight:700;letter-spacing:-.02em;margin:0;color:var(--ct-text);} 
+.title:after{content:"";display:block;width:110px;height:4px;background:linear-gradient(90deg,var(--ct-accent),var(--ct-accent-2));border-radius:2px;margin:.95rem auto 0;box-shadow:0 4px 18px -4px rgba(var(--ct-accent-rgb)/.55);} 
+.lead{font-size:clamp(.92rem,.86rem + .4vw,1.08rem);line-height:1.55;color:var(--ct-text-dim);margin:0;}
+
+.layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(1.4rem,2vw,2.4rem);align-items:start;}
+
+/* Info panel */
+.panel{position:relative;display:flex;flex-direction:column;gap:1.05rem;padding:1.55rem 1.35rem 1.7rem;background:linear-gradient(150deg,var(--ct-surface) 0%,var(--ct-surface-alt) 85%);border:1px solid var(--ct-border);border-radius:26px;box-shadow:0 1px 2px rgba(31,42,51,.08),0 0 0 1px rgba(31,42,51,.04) inset;overflow:hidden;transition:transform .38s var(--ct-transition),box-shadow .55s var(--ct-transition),border-color .5s var(--ct-transition),filter .5s var(--ct-transition);}
+.panel:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 10px 30px -12px rgba(31,42,51,.25),0 6px 16px -8px rgba(31,42,51,.18);border-color:var(--ct-border-strong);}
+.panel:focus-within{outline:none;box-shadow:0 0 0 1px var(--ct-surface),var(--ct-focus);} 
+
+.subTitle{font-family:var(--font-heading,inherit);font-size:1.05rem;font-weight:600;letter-spacing:.4px;margin:0 0 .35rem;color:var(--ct-text);} 
+.infoList{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem;}
+.infoItem{display:flex;align-items:flex-start;gap:.65rem;font-size:.82rem;line-height:1.45;color:var(--ct-text-dim);} 
+.infoIcon{font-size:1rem;line-height:1;}
+.infoLabel{font-weight:600;color:var(--ct-text);} 
+.infoValue{font-weight:500;}
+
+/* Call block */
+.call{display:flex;flex-direction:column;gap:1rem;padding:1.55rem 1.35rem 1.75rem;background:linear-gradient(160deg,var(--ct-surface) 0%,var(--ct-surface-alt) 90%);border:1px solid var(--ct-border);border-radius:26px;box-shadow:0 1px 2px rgba(31,42,51,.08),0 0 0 1px rgba(31,42,51,.04) inset;position:relative;overflow:hidden;}
+.phoneBtn{align-self:flex-start;display:inline-flex;align-items:center;gap:.65rem;padding:.95rem 1.85rem;border-radius:999px;background:linear-gradient(90deg,var(--ct-accent),var(--ct-accent-2));color:#fff;font-size:.78rem;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(var(--ct-accent-rgb)/.4);box-shadow:0 6px 20px -8px rgba(var(--ct-accent-rgb)/.55),0 2px 6px -2px rgba(31,42,51,.18);transition:transform .32s var(--ct-transition),box-shadow .55s var(--ct-transition),letter-spacing .4s var(--ct-transition);} 
+.phoneBtn:hover{transform:translateY(-3px);box-shadow:0 10px 32px -12px rgba(var(--ct-accent-rgb)/.65),0 4px 12px -6px rgba(31,42,51,.22);} 
+.phoneBtn:active{transform:translateY(0);} 
+.phoneBtn:focus-visible{outline:none;box-shadow:var(--ct-focus);} 
+.phoneBtn svg{width:16px;height:16px;}
+.bigPhone{font-family:var(--font-heading,inherit);font-size:1.35rem;font-weight:600;letter-spacing:.55px;color:var(--ct-text);}
+.work{font-size:.7rem;font-weight:600;letter-spacing:.9px;text-transform:uppercase;color:var(--ct-text-dim);margin:0;}
+.workTime{font-size:.74rem;line-height:1.5;color:var(--ct-text-dim);margin:0;}
+
+/* Map */
+.mapWrap{position:relative;min-height:260px;border:1px solid var(--ct-border);border-radius:22px;overflow:hidden;background:#dbe4ec;box-shadow:0 1px 2px rgba(31,42,51,.08),0 0 0 1px rgba(31,42,51,.04) inset;}
+.mapFrame{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+@media (max-width:760px){
+  .wrapper{padding:1.7rem .85rem 2.3rem;border-radius:22px;gap:1.8rem;}
+  .title{font-size:clamp(1.55rem,1.3rem + 2.2vw,2.05rem);} 
+  .layout{gap:1rem;grid-template-columns:1fr;justify-items:center;}
+  .panel,.call,.mapWrap{max-width:520px;width:100%;}
+  .panel,.call{padding:1.05rem .9rem 1.15rem;border-radius:20px;}
+  .panel{text-align:center;}
+  .infoList{align-items:center;}
+  .infoItem{font-size:.75rem;justify-content:center;}
+  .phoneBtn{font-size:.6rem;padding:.6rem 1.05rem;margin:0 auto;}
+  .bigPhone{font-size:1.05rem;text-align:center;}
+  .call{text-align:center;align-items:center;}
+  .work,.workTime{text-align:center;}
+  .mapWrap{min-height:220px;border-radius:20px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .panel,.phoneBtn{transition:none !important;}
+}

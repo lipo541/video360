@@ -1,11 +1,12 @@
 "use client";
 import styles from './glass-bridge.module.css';
-import '../ServiceLocation.css';
 import kaGlassBridge from '../../../locales/glassBridge/ka.glassBridge';
 import enGlassBridge from '../../../locales/glassBridge/en.glassBridge';
 import ruGlassBridge from '../../../locales/glassBridge/ru.glassBridge';
 import { useLanguage } from '../../../context/LanguageContext';
 import { buildBreadcrumbLd, buildWebPageLd } from '../../../lib/seo/structuredData';
+import { FaMountain, FaCameraRetro, FaClock, FaWalking, FaMapMarkedAlt, FaShieldAlt, FaBolt, FaUsers } from 'react-icons/fa';
+import ContactSection from '../../../components/sections/contact/ContactSection';
 
 export default function GlassBridgeService() {
   const { currentLang } = useLanguage();
@@ -14,88 +15,68 @@ export default function GlassBridgeService() {
 
   return (
     <>
-      <div className="container">
-        <div className={styles.glassBridgeWrapper}>
-          <div className={styles.glassBridgeHeader}>
-            <h1 className={styles.glassBridgeTitle}>{t.title}</h1>
-            <p className={styles.glassBridgeDesc}>{t.desc}</p>
+      <div className={styles.wrapper}>
+        <div className={styles.hero}>
+          <div className={styles.brand}>
+            <img src="/images/locations/most-mira1.jpg" alt="Glass Bridge 360" className={styles.brandImg} />
           </div>
-
-          {/* ვიდეოს ბლოკი */}
-          <div className={styles.glassBridgeGallery}>
-            <div className={styles.glassBridgeMediaLabel}>{t.videoLabel}</div>
-            <video className={styles.glassBridgeImg} controls poster="/images/locations/most-mira1.jpg" style={{ aspectRatio: 'unset', objectFit: 'contain', width: '100%', height: 'auto', maxWidth: '600px', background: '#f8fafc' }}>
-              <source src="/images/locations/glassvideo.mp4" type="video/mp4" />
-              {t.videoAlt}
-            </video>
-          </div>
-          {/* სურათის ბლოკი */}
-          <div className={styles.glassBridgeGallery}>
-            <div className={styles.glassBridgeMediaLabel}>{t.photoLabel}</div>
-            <img 
-              className={styles.glassBridgeImg} 
-              src="/images/locations/glass.jpeg" 
-              alt={t.photoAlt || "360° ვიდეო გლას ბრიჯზე | Glass Bridge 360° photo"} 
-              loading="lazy"
-            />
-          </div>
-
-          <div className={styles.glassBridgeBenefits}>
-            {t.benefits.map((benefit, idx) => (
-              <div className={styles.glassBridgeBenefit} key={idx}>
-                <div className={styles.glassBridgeBenefitTitle}>{benefit.title}</div>
-                <div className={styles.glassBridgeBenefitDesc}>{benefit.desc}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.whatsappContact}>
-            <a href="https://wa.me/+995593516842" target="_blank" rel="noopener noreferrer" className={styles.whatsappLink}>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                alt="WhatsApp"
-                className={styles.whatsappLogo}
-              />
-              <span className={styles.whatsappText}>
-                {t.whatsapp} <b>+995 593 51 68 42</b>
-              </span>
-            </a>
-          </div>
-
-          {/* ფასების სექცია */}
-          <section className={styles.pricesSection}>
-            <div className={styles.pricesHeader}>
-              <h1 className={styles.pricesTitle}>{t.prices.title}</h1>
-              <div className={styles.pricesSlogan}>{t.prices.slogan}</div>
-              <div className={styles.pricesDesc}>{t.prices.desc}</div>
-            </div>
-            <div className={styles.pricesList}>
-              {t.prices.list.map((price, idx) => (
-                <div className={styles.priceCard} key={idx}>
-                  <span className={styles.priceType}>{price.type}</span>
-                  <span className={styles.priceValue}>{price.value}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <div className="service-location">
-            <h2>{t.mapTitle}</h2>
-            <div className="map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.41730438255314!2d44.810815321720334!3d41.69162914178262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440dcdfd14a749%3A0x593f00660da6f3e4!2sXcaucasus%20-%20Paragliding%20in%20Tbilisi!5e0!3m2!1sru!2sge!4v1751884646629!5m2!1sru!2sge"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={t.mapTitle}
-              ></iframe>
-            </div>
-            <div><b>მისამართი:</b> {t.address}</div>
-          </div>
+          <h1 className={styles.title}>{t.title}</h1>
+          <p className={styles.desc}>{t.desc}</p>
         </div>
+
+        <div className={styles.gallery}>
+            <div className={styles.media}>
+              <span className={styles.badge}>{t.videoLabel}</span>
+              <video controls poster="/images/locations/most-mira1.jpg">
+                <source src="/images/locations/glassvideo.mp4" type="video/mp4" />
+                {t.videoAlt}
+              </video>
+              <div className={styles.playOverlay}><span className={styles.playTriangle}></span></div>
+            </div>
+            <div className={styles.media}>
+              <span className={styles.badge}>{t.photoLabel}</span>
+              <img src="/images/locations/glass.jpeg" alt={t.photoAlt || 'Glass Bridge 360'} loading="lazy" />
+            </div>
+        </div>
+
+        <section className={styles.featuresSection}>
+          <h2 className={styles.sectionTitle}>{t.featuresTitle || t.benefitsTitle || t.title}</h2>
+          <div className={styles.featuresGrid}>
+            {(t.benefits || []).map((benefit, i) => {
+              const iconSet = [<FaMountain key="m"/>,<FaCameraRetro key="c"/>,<FaClock key="cl"/>,<FaWalking key="w"/>,<FaMapMarkedAlt key="mp"/>,<FaShieldAlt key="s"/>,<FaBolt key="b"/>,<FaUsers key="u"/>];
+              return (
+                <div className={styles.featureCard} key={i}>
+                  <div className={styles.featureIcon}>{iconSet[i % iconSet.length]}</div>
+                  <div className={styles.featureTitle}>{benefit.title}</div>
+                  <p className={styles.featureDesc}>{benefit.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className={styles.pricingSection}>
+          <div className={styles.pricingHeader}>
+            <h2 className={styles.pricingTitle}>{t.prices?.title}</h2>
+            {t.prices?.slogan && <div className={styles.pricingSlogan}>{t.prices.slogan}</div>}
+            {t.prices?.desc && <p className={styles.pricingLead}>{t.prices.desc}</p>}
+          </div>
+          <div className={styles.pricingGrid}>
+            {(t.prices?.list || []).map((p,i)=> {
+              const priceIcons=[<FaCameraRetro key="c"/>,<FaBolt key="b"/>,<FaUsers key="u"/>,<FaShieldAlt key="s"/>];
+              return (
+                <div className={styles.priceCard} key={i}>
+                  <div className={styles.priceIcon}>{priceIcons[i%priceIcons.length]}</div>
+                  <div className={styles.priceType}>{p.type}</div>
+                  <div className={styles.priceValue}>{p.value}</div>
+                  {p.desc && <p className={styles.priceDesc}>{p.desc}</p>}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <ContactSection />
       </div>
       <script
         type="application/ld+json"

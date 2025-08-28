@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import ka from '../../locales/locationManagers/ka.locationManagers';
@@ -9,6 +9,51 @@ import kaManagers from '../../locales/locationManagers/ka.managers';
 import enManagers from '../../locales/locationManagers/en.managers';
 import ruManagers from '../../locales/locationManagers/ru.managers';
 import styles from './LocationManagers.module.css';
+
+// Header icons (inline SVG for crisp rendering & theming)
+const SECTION_ICONS = {
+  founders: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sectionIconSvg}>
+      <path d="M5 9l2-4 3 3 2-5 2 5 3-3 2 4-4 2 1 5-4-3-4 3 1-5-4-2z" fill="url(#gradF)" />
+      <defs>
+        <linearGradient id="gradF" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#2f7dff" />
+          <stop offset="100%" stopColor="#85b7ff" />
+        </linearGradient>
+      </defs>
+    </svg>
+  ),
+  mainPartners: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sectionIconSvg}>
+      <path d="M9 11l-3-3 4-4 3 3 3-3 4 4-3 3m-8 0l3 3 3-3m-6 0H5m14 0h-4m-4 3v5m4-5v5" fill="none" stroke="url(#gradP)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <defs>
+        <linearGradient id="gradP" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#2f7dff" />
+          <stop offset="100%" stopColor="#579aff" />
+        </linearGradient>
+      </defs>
+    </svg>
+  ),
+  eventManagers: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sectionIconSvg}>
+      <rect x="3" y="5" width="18" height="16" rx="3" ry="3" stroke="#2f7dff" strokeWidth="2" fill="none" />
+      <path d="M3 10h18M8 3v4M16 3v4" stroke="#2f7dff" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="12" cy="15" r="3" fill="#579aff" />
+    </svg>
+  ),
+  mainManagers: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sectionIconSvg}>
+      <path d="M12 2l7 4v5c0 5-3.5 9-7 11-3.5-2-7-6-7-11V6l7-4z" stroke="#2f7dff" strokeWidth="2" fill="rgba(47,125,255,.12)" />
+      <path d="M10 11l2 2 4-4" stroke="#2f7dff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  ),
+  locationManagers: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.sectionIconSvg}>
+      <path d="M12 22s7-6.3 7-12a7 7 0 10-14 0c0 5.7 7 12 7 12z" stroke="#2f7dff" strokeWidth="2" fill="rgba(47,125,255,.10)" />
+      <circle cx="12" cy="10" r="3" fill="#2f7dff" />
+    </svg>
+  )
+};
 
 // დამფუძნებლები
 const founders = [
@@ -182,20 +227,37 @@ const LocationManagers = () => {
   const managersT = code === 'en' ? enManagers : code === 'ru' ? ruManagers : kaManagers;
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedManager, setSelectedManager] = useState(null);
-  const [showAllManagers, setShowAllManagers] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [openSections, setOpenSections] = useState(() => new Set(['founders']));
+  // Keep content mounted after first open to avoid re-mount flashes
+  const [loadedSections, setLoadedSections] = useState(() => new Set(['founders']));
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 600);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 720); // threshold
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleOpenModal = (manager) => {
+  // Allow multiple sections open even on mobile (removed previous single-open mobile behavior)
+  const toggleSection = useCallback((key) => {
+    setOpenSections(prev => {
+      const next = new Set(prev);
+      const isOpen = next.has(key);
+      if (isOpen) {
+        next.delete(key);
+        return next;
+      }
+      setLoadedSections(ls => (ls.has(key) ? ls : new Set([...ls, key])));
+      next.add(key);
+      return next;
+    });
+  }, []);
+
+  const handleOpenModal = useCallback((manager) => {
     setSelectedManager(manager);
     setModalOpen(true);
-  };
+  }, []);
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedManager(null);
@@ -203,41 +265,73 @@ const LocationManagers = () => {
 
   // მენეჯერების სია მობილურზე
   // თითო სექციისთვის ცალკე ვაჩვენებთ სათაურს და ბარათებს
-  const renderSection = (sectionKey, arr) => (
-    <section className={styles.section} key={sectionKey} aria-labelledby={`lm-${sectionKey}-title`}>
-      <h3 id={`lm-${sectionKey}-title`} className={styles.sectionTitle}>{t[sectionKey]}</h3>
-      <div className={styles.grid}>
-        {arr.map((m, i) => {
-          const mt = managersT[sectionKey][i];
-          return (
-            <figure className={styles.card} key={m.phone} tabIndex={0} aria-label={`${mt.name} ${mt.role}`}>
-              <div className={styles.mediaWrap}>
-                <img
-                  src={m.img}
-                  alt={`${mt.name} - ${mt.role}`}
-                  className={styles.img}
-                  loading="lazy"
-                />
-                <div className={styles.ring} aria-hidden="true" />
-              </div>
-              <figcaption className={styles.body}>
-                <div className={styles.name}>{mt.name}</div>
-                <div className={styles.role}>{mt.role}</div>
-                <p className={styles.desc}>{mt.desc}</p>
-                <button
-                  className={styles.btn}
-                  onClick={() => handleOpenModal({ ...m, ...mt })}
-                  aria-label={`${mt.name} ${t.more}`}
-                >
-                  <span>{t.more}</span>
-                </button>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </div>
-    </section>
-  );
+  const renderSection = (sectionKey, arr) => {
+    const open = openSections.has(sectionKey);
+    const panelId = `lm-${sectionKey}-panel`;
+    const btnId = `lm-${sectionKey}-btn`;
+    const headerVariant = styles.variantGlass; // chosen modern variant
+    return (
+      <section className={styles.section} key={sectionKey}>
+        <button
+          id={btnId}
+            type="button"
+            className={[
+              styles.sectionTitle,
+              headerVariant,
+              open ? styles.sectionOpen : styles.sectionClosed
+            ].join(' ')}
+            aria-expanded={open}
+            aria-controls={panelId}
+            onClick={() => toggleSection(sectionKey)}
+        >
+          <span className={styles.sectionLabel}>
+            <span className={styles.sectionIconWrap}>{SECTION_ICONS[sectionKey]}</span>
+            {t[sectionKey]}
+          </span>
+          <span className={styles.sectionChevron} aria-hidden="true" />
+        </button>
+        <div
+          id={panelId}
+          role="region"
+          aria-labelledby={btnId}
+          aria-hidden={!open}
+          className={styles.sectionPanel + ' ' + (open ? styles.panelOpen : styles.panelClosed)}
+        >
+          <div className={styles.grid}>
+            {loadedSections.has(sectionKey) && arr.map((m, i) => {
+              const mt = managersT[sectionKey][i];
+              return (
+                <figure className={styles.card} key={m.phone} tabIndex={0} aria-label={`${mt.name} ${mt.role}`}>
+                  <div className={styles.mediaWrap}>
+                    <img
+                      src={m.img}
+                      alt={`${mt.name} - ${mt.role}`}
+                      className={styles.img}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className={styles.ring} aria-hidden="true" />
+                  </div>
+                  <figcaption className={styles.body}>
+                    <div className={styles.name}>{mt.name}</div>
+                    <div className={styles.role}>{mt.role}</div>
+                    <p className={styles.desc}>{mt.desc}</p>
+                    <button
+                      className={styles.btn}
+                      onClick={() => handleOpenModal({ ...m, ...mt })}
+                      aria-label={`${mt.name} ${t.more}`}
+                    >
+                      <span>{t.more}</span>
+                    </button>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  };
 
   return (
     <div className={styles.wrapper} data-component="location-managers">

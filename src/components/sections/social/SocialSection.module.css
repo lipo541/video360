@@ -1,0 +1,85 @@
+/* Modern Social Section */
+
+.wrapper {
+  /* Harmonized sizing with other sections (SafetySection/ServicesSection) */
+  --soc-accent:#ff475a;
+  --soc-accent-rgb:255 71 90;
+  --soc-text:#1f252d;
+  --soc-text-dim:#5d6b76;
+  --soc-surface:#ffffff;
+  --soc-surface-alt:#f4f7fa;
+  --soc-border:#e1e7ed;
+  --soc-border-strong:#cfd8e2;
+  --soc-focus:0 0 0 2px rgba(var(--soc-accent-rgb)/.55),0 0 0 5px rgba(var(--soc-accent-rgb)/.25);
+  --soc-transition:cubic-bezier(.4,0,.2,1);
+  position:relative;
+  max-width:1280px;
+  margin:0 auto clamp(3rem,4vw,4.6rem); /* unified vertical spacing */
+  padding:clamp(2.2rem,2.8vw,3.2rem) clamp(.9rem,1.8vw,2.1rem) clamp(2.6rem,3vw,3.6rem);
+  background:linear-gradient(135deg,#ffffff,#f5f8fb); /* neutral (no red tint) */
+  border:1px solid var(--soc-border);
+  border-radius:26px;
+  box-shadow:0 6px 28px -12px rgba(31,42,51,.18),0 2px 10px -6px rgba(31,42,51,.12);
+  display:flex;
+  flex-direction:column;
+  gap:clamp(2rem,2.6vw,2.6rem);
+  overflow:hidden;
+}
+/* Removed red radial overlay to differentiate from SafetySection */
+
+.header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.85rem;max-width:860px;margin:0 auto;}
+.title{font-family:var(--font-heading,inherit);font-size:clamp(1.8rem,1.4rem + 1.9vw,2.55rem);font-weight:700;letter-spacing:-.02em;color:var(--soc-text);margin:0;position:relative;}
+.title:after{content:"";display:block;width:118px;height:4px;border-radius:2px;margin:.95rem auto 0;background:linear-gradient(90deg,var(--soc-accent),#ff7a45);box-shadow:0 4px 18px -4px rgba(var(--soc-accent-rgb)/.6);} 
+.desc{color:var(--soc-text-dim);font-size:clamp(.9rem,.85rem + .35vw,1.05rem);line-height:1.55;margin:0 auto;}
+
+.grid{display:grid;gap:clamp(1rem,1.4vw,1.6rem);grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:stretch;}
+
+/* Platform Card */
+.card{--glow:rgba(var(--soc-accent-rgb)/.35);position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:1.1rem 1.05rem 1.2rem;background:linear-gradient(150deg,var(--soc-surface) 0%,var(--soc-surface-alt) 85%);border:1px solid var(--soc-border);border-radius:22px;text-decoration:none;overflow:hidden;min-height:178px;isolation:isolate;transition:transform .38s var(--soc-transition),box-shadow .55s var(--soc-transition),border-color .5s var(--soc-transition),filter .5s var(--soc-transition),background .65s var(--soc-transition);} 
+.card:before,.card:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .55s var(--soc-transition),transform .9s var(--soc-transition);} 
+.card:before{background:radial-gradient(circle at 76% 20%,rgba(var(--soc-accent-rgb)/.28),transparent 62%);} 
+.card:after{background:linear-gradient(135deg,rgba(var(--soc-accent-rgb)/.45),rgba(var(--soc-accent-rgb)/0) 46%,rgba(255,122,69,.48));mix-blend-mode:overlay;} 
+.card:hover{transform:translateY(-8px) scale(1.022);box-shadow:0 10px 36px -12px rgba(15,23,42,.28),0 6px 20px -10px rgba(15,23,42,.2);border-color:var(--soc-border-strong);filter:saturate(1.05);} 
+.card:hover:before{opacity:1;transform:scale(1.15);} 
+.card:hover:after{opacity:.55;} 
+.card:focus-visible{outline:none;box-shadow:0 0 0 1px var(--soc-surface),var(--soc-focus);} 
+
+.platformHeader{display:flex;align-items:center;gap:.75rem;margin:0 0 .55rem;}
+.iconWrap{width:50px;height:50px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#ff475a1a,#ff7a4514);box-shadow:inset 0 0 0 1px rgba(var(--soc-accent-rgb)/.3),0 2px 6px -2px rgba(15,23,42,.2);position:relative;overflow:hidden;}
+.iconWrap:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.55),transparent 60%);mix-blend-mode:overlay;}
+.icon{width:26px;height:26px;display:block;color:var(--soc-accent);}
+.platformName{font-family:var(--font-heading,inherit);font-size:1.05rem;font-weight:600;color:var(--soc-text);letter-spacing:.3px;margin:0;}
+
+.meta{display:flex;align-items:center;gap:.55rem;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--soc-text-dim);background:rgba(var(--soc-accent-rgb)/.06);padding:.38rem .7rem;border-radius:999px;border:1px solid rgba(var(--soc-accent-rgb)/.12);margin:0 0 .55rem;}
+
+.blurb{font-size:.78rem;line-height:1.5;color:var(--soc-text-dim);margin:0 0 .9rem;flex-grow:1;}
+
+.action{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,var(--soc-accent),#ff7a45);border:1px solid rgba(var(--soc-accent-rgb)/.4);border-radius:999px;padding:.65rem 1.1rem .62rem;text-decoration:none;box-shadow:0 4px 16px -6px rgba(var(--soc-accent-rgb)/.55),0 2px 4px -2px rgba(15,23,42,.16);transition:transform .32s var(--soc-transition),box-shadow .5s var(--soc-transition);} 
+.action:hover{transform:translateY(-3px);box-shadow:0 10px 30px -12px rgba(var(--soc-accent-rgb)/.65),0 4px 12px -6px rgba(15,23,42,.22);} 
+.action:active{transform:translateY(0);} 
+.action:focus-visible{outline:none;box-shadow:var(--soc-focus);} 
+.action svg{width:15px;height:15px;}
+
+/* Brand accent overrides */
+.card.facebook .icon{color:#1877f2;}
+.card.facebook .iconWrap{background:linear-gradient(135deg,#1877f210,#1877f205);}
+.card.instagram .icon{color:#e6683c;}
+.card.instagram .iconWrap{background:linear-gradient(135deg,#f0943312,#bc188812);}
+.card.tiktok .icon{color:#000;}
+.card.tiktok .iconWrap{background:linear-gradient(135deg,#00000018,#11111108);} 
+
+@media (max-width:760px){
+  .wrapper{padding:1.7rem .9rem 2.4rem;border-radius:24px;gap:1.7rem;}
+  .title{font-size:clamp(1.45rem,1.25rem + 2.2vw,2.05rem);} 
+  .grid{gap:.85rem;} 
+  .card{padding:.95rem .85rem 1rem;min-height:170px;border-radius:20px;} 
+  .iconWrap{width:44px;height:44px;} 
+  .icon{width:24px;height:24px;} 
+  .platformName{font-size:.95rem;} 
+  .blurb{font-size:.72rem;margin:0 0 .75rem;} 
+  .action{font-size:.6rem;padding:.55rem .9rem .52rem;} 
+}
+
+@media (prefers-reduced-motion:reduce){
+  .card,.action{transition:none !important;} .card:before,.card:after{transition:none !important;} .iconWrap:before{display:none;} 
+}

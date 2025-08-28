@@ -9,8 +9,9 @@ export async function generateMetadata(props) {
   return buildPageMetadata(locale, 'home', '/');
 }
 
-export default function HomePage({ params }) {
-  const locale = params?.locale || 'ka';
+export default async function HomePage({ params }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale || 'ka';
   const breadcrumb = buildBreadcrumbLd(locale, [
     { key: 'home', href: '/' }
   ]);

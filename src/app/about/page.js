@@ -10,7 +10,9 @@ export async function generateMetadata(props) {
   return buildPageMetadata(locale, 'about', '/about');
 }
 
-export default function AboutPage({ params }) {
+export default async function AboutPage(props) {
+  // Explicitly await params (may be a thenable in Next.js 15+)
+  const params = await props?.params;
   const locale = params?.locale || 'ka';
   const breadcrumb = buildBreadcrumbLd(locale,[
     { key:'home', href:'/' },

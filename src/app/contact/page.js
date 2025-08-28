@@ -1,5 +1,5 @@
 import { buildPageMetadata } from '../../lib/seo/metaHelper';
-import Contact from '../../pages/contact/contact';
+import ContactSection from '../../components/sections/contact/ContactSection';
 import { buildBreadcrumbLd, buildWebPageLd } from '../../lib/seo/structuredData';
 
 export const dynamic = 'force-static';
@@ -9,8 +9,8 @@ export async function generateMetadata(props) {
   return buildPageMetadata(locale,'contact','/contact');
 }
 
-export default function ContactPage({ params }) {
-  const locale = params?.locale || 'ka';
+export default async function ContactPage({ params }) {
+  const { locale = 'ka' } = await params || {};
   const breadcrumb = buildBreadcrumbLd(locale,[
     { key:'home', href:'/' },
     { key:'contact', href:'/contact' }
@@ -18,7 +18,7 @@ export default function ContactPage({ params }) {
   const title = locale === 'ka' ? 'კონტაქტი' : locale === 'ru' ? 'Контакты' : 'Contact';
   const webPage = buildWebPageLd(locale,title,'/contact');
   return <>
-    <Contact />
+    <ContactSection />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
   </>;

@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import './ServicesSection.css';
+import styles from './ServicesSection.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '../../../context/LanguageContext';
@@ -32,26 +32,30 @@ const ServicesSection = () => {
     ];
 
     return (
-        <section className="services-section">
-            <h2 className="section-title">{t.sectionTitle}</h2>
-            <div className="services-grid">
-                {services.map((service, index) => (
-                    <div className="service-card" key={index}>
+        <section className={styles.wrapper} data-component="services-section">
+            <h2 className={styles.title}>{t.sectionTitle}</h2>
+            <div className={styles.grid} role="list">
+                {services.map((service) => (
+                    <article className={styles.card} key={service.slug} role="listitem">
                         {service.image && (
-                            <div className="service-image">
-                                <Image 
-                                    src={service.image} 
+                            <div className={styles.media}>
+                                <Image
+                                    src={service.image}
                                     alt={service.title}
-                                    width={300}
-                                    height={200}
+                                    fill
+                                    sizes="(max-width:760px) 100vw, 33vw"
+                                    priority={false}
                                     style={{ objectFit: 'cover' }}
                                 />
+                                <div className={styles.mediaOverlay} aria-hidden="true" />
                             </div>
                         )}
-                        <h3>{service.title}</h3>
-                        <p>{service.description}</p>
-                        <Link href={`${base}/services/${service.slug}`} className="learn-more">{t.learnMore}</Link>
-                    </div>
+                        <h3 className={styles.name}>{service.title}</h3>
+                        <p className={styles.desc}>{service.description}</p>
+                        <Link href={`${base}/services/${service.slug}`} className={styles.btn} aria-label={`${service.title} - ${t.learnMore}`}>
+                            {t.learnMore}
+                        </Link>
+                    </article>
                 ))}
             </div>
         </section>

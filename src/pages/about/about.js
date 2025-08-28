@@ -2,6 +2,8 @@
 "use client";
 import React from 'react';
 import './about.css';
+import { FaUsers, FaCogs, FaBolt, FaShieldAlt, FaCameraRetro, FaLeaf, FaClock, FaMapMarkedAlt, FaWhatsapp, FaVideo, FaShoppingCart, FaGraduationCap, FaTrophy, FaRobot, FaBriefcase, FaCoins, FaCampground } from 'react-icons/fa';
+import ContactSection from '../../components/sections/contact/ContactSection';
 import { useLanguage } from '../../context/LanguageContext';
 import ka from '../../locales/aboutSection/ka.aboutSection.js';
 import en from '../../locales/aboutSection/en.aboutSection.js';
@@ -20,79 +22,81 @@ const About = () => {
     else setT(ka);
   }, [currentLang]);
 
+  const serviceIconMap = {
+    '📹': FaVideo,
+    '🛒': FaShoppingCart,
+    '🎪': FaCampground,
+    '🎓': FaGraduationCap
+  };
+  const whyIconMap = {
+    '🏆': FaTrophy,
+    '🤖': FaRobot,
+    '💼': FaBriefcase,
+    '💰': FaCoins,
+    '⚡': FaBolt
+  };
   return (
-    <div className="about-container">
-      <div className="about-hero">
-        <h1 className="about-title">{t.title}</h1>
-        <p className="about-lead">{t.lead}</p>
-      </div>
-      <div className="about-content">
-        <div className="about-section about-team">
-          <div className="section-icon">👥</div>
-          <h2>{t.team.title}</h2>
-          <p>{t.team.description}</p>
+    <>
+    <div className="aboutWrapper">
+      <header className="hero">
+        <h1 className="heroTitle">{t.title}</h1>
+        <p className="heroLead">{t.lead}</p>
+      </header>
+
+      {/* Team Section */}
+  <section className="section section--violet" aria-labelledby="team-heading">
+        <div className="sectionHeader">
+          <div className="sectionIcon" aria-hidden="true"><FaUsers /></div>
+          <h2 id="team-heading" className="sectionTitle">{t.team.title}</h2>
+          <p className="sectionLead">{t.team.description}</p>
         </div>
-        <div className="about-section about-services">
-          <div className="section-icon">🎯</div>
-          <h2>{t.services.title}</h2>
-          <div className="services-grid">
-            {t.services.items.map((item, i) => (
-              <div className="service-item" key={i}>
-                <div className="service-icon">{item.icon}</div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+      </section>
+
+      {/* Services */}
+  <section className="section section--teal" aria-labelledby="services-heading">
+        <div className="sectionHeader">
+          <div className="sectionIcon" aria-hidden="true"><FaCogs /></div>
+          <h2 id="services-heading" className="sectionTitle">{t.services.title}</h2>
+          {t.services.lead && <p className="sectionLead">{t.services.lead}</p>}
+        </div>
+        <div className="servicesGrid">
+          {t.services.items.map((item,i)=> {
+            const Icon = serviceIconMap[item.icon] || FaCogs;
+            return (
+              <div key={i} className="serviceCard">
+                <div className="serviceIcon"><Icon aria-label={item.title} /></div>
+                <h3 className="serviceTitle">{item.title}</h3>
+                <p className="serviceDesc">{item.description}</p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-        <div className="about-section about-whyus">
-          <div className="section-icon">⭐</div>
-          <h2>{t.whyus.title}</h2>
-          <div className="features-grid">
-            {t.whyus.features.map((feature, i) => (
-              <div className="feature-item" key={i}>
-                <div className="feature-icon">{feature.icon}</div>
-                <span>{feature.text}</span>
+      </section>
+
+      {/* Why Us */}
+  <section className="section section--amber" aria-labelledby="whyus-heading">
+        <div className="sectionHeader">
+          <div className="sectionIcon" aria-hidden="true"><FaShieldAlt /></div>
+          <h2 id="whyus-heading" className="sectionTitle">{t.whyus.title}</h2>
+          {t.whyus.lead && <p className="sectionLead">{t.whyus.lead}</p>}
+        </div>
+        <div className="featuresGrid">
+          {(t.whyus.features||[]).map((feature,i)=> {
+            const Icon = whyIconMap[feature.icon] || FaShieldAlt;
+            return (
+              <div key={i} className="featureCard">
+                <div className="featureIcon"><Icon aria-label={feature.text} /></div>
+                <p className="featureText">{feature.text}</p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-        <div className="about-section about-contact">
-          <div className="section-icon">📞</div>
-          <h2>{t.contact.title}</h2>
-          <div className="whatsapp-row">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-              alt={t.whatsappAlt || "WhatsApp logo for 360° contact"} 
-              className="about-whatsapp-logo" 
-              loading="lazy"
-            />
-            <a href="https://wa.me/+995593516842" target="_blank" rel="noopener noreferrer" className="about-whatsapp-btn">
-              <span className="whatsapp-number">{t.contact.whatsapp.number}</span>
-            </a>
-          </div>
-        </div>
-        <div className="location-section">
-          <div className="section-icon">📍</div>
-          <h2>{t.location.title}</h2>
-          <p>{t.location.description}</p>
-          <div className="map-container">
-            <div className="map-wrapper">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d372.41730438255314!2d44.810815321720334!3d41.69162914178262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440dcdfd14a749%3A0x593f00660da6f3e4!2sXcaucasus%20-%20Paragliding%20in%20Tbilisi!5e0!3m2!1sru!2sge!4v1751884646629!5m2!1sru!2sge"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Video360 Studio Location"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+
+  {/* Shared Contact Component */}
+  </div>
+  <ContactSection wide />
+  </>
   );
 };
 

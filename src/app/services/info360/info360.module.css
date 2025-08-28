@@ -1,480 +1,302 @@
-/* Main wrapper */
-.info360Wrapper {
-  /* background: linear-gradient(120deg, #232b36 0%, #374151 100%); */
-  color: #fff;
-  border-radius: 22px;
-  box-shadow: 0 4px 32px rgba(26,32,44,0.13);
-  padding: 3.5rem 2.5rem 3rem 2.5rem;
-  max-width: 1600px;
-  margin: 0 auto 2rem auto;
+/* Clean modern Info360 styles (expanded formatting) */
+
+.wrapper {
+  --i-accent: #ff475a;
+  --i-accent-2: #ff7a45;
+  --i-accent-rgb: 255 71 90;
+  --i-text: #1f252d;
+  --i-text-dim: #586874;
+  --i-surface: #ffffff;
+  --i-surface-alt: #f5f8fb;
+  --i-border: #e1e7ed;
+  --i-border-strong: #cfd8e2;
+  position: relative;
+  background: linear-gradient(180deg, #fff 0%, #f6f9fc 70%, #eef3f8 100%);
+  border: 1px solid var(--i-border);
+  border-radius: 30px;
+  padding: 2.6rem clamp(1rem, 2vw, 2.2rem) 3.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  max-width: 1280px;
+  margin: 2.4rem auto 3.2rem;
+  box-shadow: 0 10px 40px -18px rgba(31, 42, 51, .12), 0 2px 8px -2px rgba(31, 42, 51, .06);
+  overflow: hidden;
+}
+
+.wrapper:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(var(--i-accent-rgb)/.12), transparent 28%, transparent 72%, rgba(var(--i-accent-rgb)/.12));
+  mix-blend-mode: color-dodge;
+  opacity: .55;
+}
+
+.header {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.1rem;
 }
-.info360Title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #ffa726;
-  margin-bottom: 1.2rem;
-  text-align: center;
+
+.brand {
+  width: 86px;
+  height: 86px;
+  position: relative;
+  border: 6px solid #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 18px -4px rgba(var(--i-accent-rgb)/.35), 0 0 0 1px rgba(var(--i-accent-rgb)/.30);
+  overflow: hidden;
 }
-.info360Desc {
-  font-size: 1.35rem;
-  color: #020202;
-  margin-bottom: 2.2rem;
-  text-align: center;
-  max-width: 900px;
-}
-.info360Gallery {
-  display: flex;
-  gap: 2.2rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.info360Img {
-  border-radius: 16px;
-  box-shadow: 0 2px 16px #0002;
-  object-fit: cover;
-  width: 400px;
-  height: 270px;
-  background: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.info360Img:hover {
-  transform: scale(1.04) rotate(-1deg);
-  box-shadow: 0 8px 32px #ffa72633;
-}
-.info360Section {
-  background: rgba(255,255,255,0.07);
-  border-radius: 14px;
-  padding: 2rem 2.5rem;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 900px;
-  box-shadow: 0 2px 12px #0002;
-}
-.info360Section h2 {
-  color: #ffd180;
-  font-size: 1.7rem;
-  margin-bottom: 1.1rem;
-}
-.info360List {
-  color: #e0eafc;
-  font-size: 1.18rem;
-  padding-left: 1.2rem;
+
+.title {
+  font-family: var(--heading-font, 'Noto Sans', system-ui);
+  font-size: clamp(1.85rem, 1.45rem + 1.8vw, 2.55rem);
+  letter-spacing: .5px;
+  line-height: 1.15;
+  background: linear-gradient(90deg, #1f252d 0%, #36404b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   margin: 0;
+}
+
+.desc {
+  max-width: 760px;
+  font-size: clamp(.9rem, .78rem + .45vw, 1.05rem);
+  line-height: 1.55;
+  margin: 0;
+  color: var(--i-text-dim);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.15rem;
+}
+
+.media {
+  aspect-ratio: 4/3;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px -6px rgba(31, 42, 51, .2), 0 1px 3px rgba(31, 42, 51, .15);
+  background: #dbe4ec;
+}
+
+.media img {
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.16, .8, .24, 1), filter .6s ease;
+  filter: saturate(.9) contrast(1.05);
+}
+
+.media:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.1) brightness(1.05);
+}
+
+.media:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(145deg, rgba(var(--i-accent-rgb)/.08), transparent 55%, rgba(var(--i-accent-rgb)/.16));
+  mix-blend-mode: overlay;
+  opacity: .85;
+}
+
+.section {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1.9rem;
 }
-/* Pricing grid and cards */
+
+.sectionTitle {
+  font-size: clamp(1.15rem, 1rem + .95vw, 1.75rem);
+  font-weight: 700;
+  color: var(--i-text);
+  letter-spacing: .5px;
+  margin: 0;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.sectionTitle:before {
+  content: "";
+  width: 42px;
+  height: 6px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--i-accent), var(--i-accent-2));
+  box-shadow: 0 1px 3px rgba(var(--i-accent-rgb)/.45);
+}
+
+/* Pricing */
 .pricingGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.2rem;
-  margin: 2.5rem 0 2.5rem 0;
-  width: 100%;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
 }
+
 .priceCard {
-  background: linear-gradient(120deg, #232b36 0%, #374151 100%);
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(26,32,44,0.13);
-  padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+  position: relative;
+  background: linear-gradient(165deg, var(--i-surface) 0%, var(--i-surface-alt) 100%);
+  border: 1px solid var(--i-border);
+  border-radius: 26px;
+  padding: 1.8rem 1.5rem 1.9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 260px;
-  max-width: 400px;
-  width: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid #ffa72633;
-}
-.priceCard:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px #ffa72633;
-  border-color: #ffa726;
-}
-.priceTitle {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #ffd180;
-  margin-bottom: 0.7rem;
   text-align: center;
-}
-.priceValue {
-  font-size: 2.3rem;
-  font-weight: 800;
-  color: #ffa726;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 8px #ffa72633;
-  text-align: center;
-}
-.priceValue span {
-  font-size: 1.1rem;
-  color: #e0eafc;
-  font-weight: 400;
-  margin-left: 0.3rem;
-}
-.priceDesc {
-  font-size: 1.08rem;
-  color: #e0eafc;
-  text-align: center;
-}
-/* Why us section modern cards */
-.whyUsTitle {
-  color: #ffd180;
-  font-size: 1.7rem;
-  margin-bottom: 1.1rem;
-  text-align: center;
-}
-.whyUsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  margin-bottom: 1.5rem;
-}
-.whyUsCard {
-  background: linear-gradient(120deg, #232b36 0%, #374151 100%);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 220px;
-  max-width: 340px;
-  width: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid #ffa72633;
-}
-.whyUsCard:hover {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 8px 32px #ffa72633;
-  border-color: #ffa726;
-}
-.whyUsIcon {
-  font-size: 2.5rem;
-  margin-bottom: 0.7rem;
-  color: #ffa726;
-  text-shadow: 0 2px 8px #ffa72633;
-}
-.whyUsText {
-  color: #e0eafc;
-  font-size: 1.13rem;
-  text-align: center;
-  font-weight: 600;
-}
-/* Contact and map section */
-.contactTitle {
-  color: #ffd180;
-  font-size: 1.7rem;
-  margin-bottom: 1.1rem;
-  text-align: center;
-}
-.contactGrid {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-.whatsappCard {
-  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #25d36633;
-  padding: 2rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 260px;
-  max-width: 340px;
-  width: 100%;
-  text-decoration: none;
-  color: #fff;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid #25d36633;
-}
-.whatsappCard:hover {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 8px 32px #25d36633;
-  border-color: #25d366;
-}
-.whatsappLogo {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 0.7rem;
-}
-.whatsappText {
-  text-align: center;
-  font-size: 1.18rem;
-  font-weight: 600;
-}
-.whatsappText b {
-  display: block;
-  font-size: 1.25rem;
-  margin-top: 0.2rem;
-  color: #fff;
-}
-.mapCard {
-  background: linear-gradient(120deg, #232b36 0%, #374151 100%);
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #0002;
-  padding: 2rem 2.5rem 1.5rem 2.5rem;
-  min-width: 320px;
-  max-width: 500px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid #ffa72633;
-}
-.mapTitle {
-  color: #ffd180;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.7rem;
-}
-.mapFrameWrapper {
-  width: 100%;
-  border-radius: 12px;
+  gap: .85rem;
+  box-shadow: 0 2px 4px rgba(31, 42, 51, .06), 0 6px 18px -8px rgba(31, 42, 51, .15);
   overflow: hidden;
-  margin-bottom: 0.7rem;
+  transition: transform .55s cubic-bezier(.16, .8, .24, 1), box-shadow .55s ease, border-color .55s ease;
 }
-.mapAddress {
-  color: #e0eafc;
-  font-size: 1.08rem;
-  margin-top: 0.3rem;
-  text-align: center;
+
+.priceCard:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 65% 15%, rgba(var(--i-accent-rgb)/.22), transparent 55%), linear-gradient(120deg, rgba(var(--i-accent-rgb)/.08), transparent);
+  opacity: .75;
+  pointer-events: none;
 }
-/* Simple WhatsApp button */
-.whatsappSimpleBtn {
+
+.priceCard:after {
+  content: "";
+  position: absolute;
+  bottom: -40%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  background: linear-gradient(160deg, rgba(var(--i-accent-rgb)/.08), transparent 60%);
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+.priceCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px -18px rgba(var(--i-accent-rgb)/.55), 0 8px 22px -12px rgba(31, 42, 51, .18);
+  border-color: var(--i-border-strong);
+}
+
+.priceCard:hover:after {
+  opacity: 1;
+}
+
+.priceIcon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--i-accent) 0%, var(--i-accent-2) 100%);
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  background: #25d366;
+  justify-content: center;
   color: #fff;
-  font-size: 1.18rem;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 18px -4px rgba(var(--i-accent-rgb)/.55);
+}
+
+.priceTitle {
+  font-size: 1.05rem;
   font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 0.85rem 1.5rem;
-  box-shadow: 0 2px 8px #25d36633;
-  text-decoration: none;
-  transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
-  cursor: pointer;
-  margin-bottom: 1.2rem;
+  letter-spacing: .4px;
+  color: var(--i-text);
 }
-.whatsappSimpleBtn:hover {
-  background: #128c7e;
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 6px 18px #25d36633;
-}
-.whatsappSimpleLogo {
-  width: 28px;
-  height: 28px;
-  display: block;
-}
-.whatsappSimpleBtn b {
+
+.priceValue {
+  font-size: 2.05rem;
   font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--i-accent);
+  line-height: 1.1;
+}
+
+.priceDesc {
+  font-size: .78rem;
+  line-height: 1.45;
+  color: var(--i-text-dim);
+  max-width: 280px;
+  margin: 0;
+}
+
+/* Why Us */
+.whyFeatures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.15rem;
+}
+
+.whyItem {
+  position: relative;
+  background: linear-gradient(170deg, var(--i-surface) 0%, var(--i-surface-alt) 100%);
+  border: 1px solid var(--i-border);
+  border-radius: 24px;
+  padding: 1.35rem 1.15rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .65rem;
+  box-shadow: 0 2px 4px rgba(31, 42, 51, .05), 0 6px 16px -8px rgba(31, 42, 51, .14);
+  overflow: hidden;
+  transition: transform .55s cubic-bezier(.16, .8, .24, 1), box-shadow .55s ease, border-color .55s ease;
+}
+
+.whyItem:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 10%, rgba(var(--i-accent-rgb)/.18), transparent 55%);
+  opacity: .75;
+  pointer-events: none;
+}
+
+.whyItem:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 34px -16px rgba(var(--i-accent-rgb)/.55), 0 6px 18px -10px rgba(31, 42, 51, .18);
+  border-color: var(--i-border-strong);
+}
+
+.whyBadge {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--i-accent) 0%, var(--i-accent-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 14px -4px rgba(var(--i-accent-rgb)/.55);
 }
-@media (min-width: 2200px) {
-  .info360Wrapper {
-    max-width: 2200px;
-    padding: 5rem 4rem 4rem 4rem;
-  }
-  .info360Title {
-    font-size: 3.7rem;
-  }
-  .info360Desc {
-    font-size: 1.7rem;
-    max-width: 1400px;
-  }
-  .info360Img {
-    width: 600px;
-    height: 400px;
-  }
-  .info360Section {
-    max-width: 1400px;
-    padding: 3rem 4rem;
-  }
-  .info360Section h2 {
-    font-size: 2.2rem;
-  }
-  .info360List {
-    font-size: 1.45rem;
-  }
-  .pricingGrid {
-    gap: 3.5rem;
-  }
-  .priceCard {
-    min-width: 420px;
-    max-width: 600px;
-    padding: 3.5rem 2.5rem 2.5rem 2.5rem;
-  }
-  .priceTitle {
-    font-size: 2.1rem;
-  }
-  .priceValue {
-    font-size: 3.2rem;
-  }
-  .priceDesc {
-    font-size: 1.45rem;
-  }
-  .whyUsGrid {
-    gap: 3.5rem;
-  }
-  .whyUsCard {
-    min-width: 340px;
-    max-width: 520px;
-    padding: 3rem 2.5rem 2.5rem 2.5rem;
-  }
-  .whyUsIcon {
-    font-size: 3.5rem;
-  }
-  .whyUsText {
-    font-size: 1.45rem;
-  }
-  .contactGrid {
-    gap: 4rem;
-  }
-  .whatsappCard, .mapCard {
-    min-width: 420px;
-    max-width: 600px;
-    padding: 3.5rem 3rem 2.5rem 3rem;
-  }
-  .whatsappLogo {
-    width: 70px;
-    height: 70px;
-  }
-  .whatsappText {
-    font-size: 1.45rem;
-  }
-  .mapTitle {
-    font-size: 1.7rem;
-  }
-  .mapAddress {
-    font-size: 1.25rem;
-  }
+
+.whyCopy {
+  font-size: .74rem;
+  line-height: 1.4;
+  color: var(--i-text-dim);
+  font-weight: 500;
+  margin: 0;
 }
-@media (max-width: 1200px) {
-  .info360Wrapper {
-    padding: 2rem 0.5rem 2rem 0.5rem;
-  }
-  .info360Gallery {
-    gap: 1.2rem;
-  }
-  .info360Img {
-    width: 300px;
-    height: 200px;
-  }
-  .info360Section {
-    padding: 1.2rem 0.7rem;
-  }
+
+/* Responsive */
+@media (max-width: 760px) {
+  .wrapper { padding: 1.6rem .85rem 2.3rem; border-radius: 22px; gap: 1.9rem; }
+  .title { font-size: clamp(1.55rem, 1.3rem + 2.2vw, 2.05rem); }
+  .gallery { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .priceCard, .whyItem { padding: 1.05rem .85rem 1.15rem; border-radius: 20px; }
+  .brand { width: 70px; height: 70px; border-radius: 20px; }
+  .priceValue { font-size: 1.55rem; }
+  .priceDesc, .whyCopy { font-size: .72rem; }
+  .whyBadge { width: 42px; height: 42px; font-size: 1.05rem; border-radius: 12px; margin-bottom: .2rem; }
 }
-@media (max-width: 900px) {
-  .pricingGrid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .priceCard {
-    min-width: 0;
-    max-width: 98vw;
-    padding: 1.2rem 0.7rem 1rem 0.7rem;
-  }
-  .priceTitle {
-    font-size: 1.1rem;
-  }
-  .priceValue {
-    font-size: 1.7rem;
-  }
-  .priceDesc {
-    font-size: 0.98rem;
-  }
-  .whyUsGrid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .whyUsCard {
-    min-width: 0;
-    max-width: 98vw;
-    padding: 1.2rem 0.7rem 1rem 0.7rem;
-  }
-  .whyUsIcon {
-    font-size: 1.7rem;
-  }
-  .whyUsText {
-    font-size: 0.98rem;
-  }
-  .contactGrid {
-    flex-direction: column;
-    gap: 1.2rem;
-    align-items: stretch;
-  }
-  .whatsappCard, .mapCard {
-    min-width: 0;
-    max-width: 98vw;
-    padding: 1.2rem 0.7rem 1rem 0.7rem;
-  }
-  .whatsappLogo {
-    width: 36px;
-    height: 36px;
-  }
-  .whatsappText {
-    font-size: 1rem;
-  }
-  .mapTitle {
-    font-size: 1rem;
-  }
-  .mapAddress {
-    font-size: 0.98rem;
-  }
-}
-@media (max-width: 700px) {
-  .info360Wrapper {
-    padding: 0.7rem 0.1rem 1rem 0.1rem;
-  }
-  .info360Title {
-    font-size: 1.3rem;
-  }
-  .info360Desc {
-    font-size: 1rem;
-  }
-  .info360Img {
-    width: 98vw;
-    height: 160px;
-  }
-  .info360Section {
-    padding: 0.7rem 0.2rem;
-    max-width: 100vw;
-  }
-  .info360Section h2 {
-    font-size: 1.1rem;
-  }
-  .info360List {
-    font-size: 0.98rem;
-  }
-}
-@media (max-width: 600px) {
-  .info360Gallery {
-    flex-direction: column;
-    gap: 0.7rem;
-    padding: 0 2vw;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-  .info360Img {
-    width: 100%;
-    max-width: 100vw;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-  }
+
+@media (prefers-reduced-motion: reduce) {
+  .media, .media img, .priceCard, .whyItem { transition: none !important; }
 }
