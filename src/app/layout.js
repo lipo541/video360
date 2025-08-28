@@ -19,8 +19,9 @@ const openSans = Open_Sans({
 });
 
 // Heading font with Georgian support
+// Georgian subset isn't available in next/font for Noto Sans; rely on system fallback for Georgian glyphs
 const noto = Noto_Sans({
-  subsets: ["latin","georgian"],
+  subsets: ["latin"],
   weight: ['400','500','600','700'],
   variable: "--font-heading"
 });
