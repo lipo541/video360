@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import ka from '../../locales/locationManagers/ka.locationManagers';
 import en from '../../locales/locationManagers/en.locationManagers';
@@ -7,7 +8,7 @@ import ru from '../../locales/locationManagers/ru.locationManagers';
 import kaManagers from '../../locales/locationManagers/ka.managers';
 import enManagers from '../../locales/locationManagers/en.managers';
 import ruManagers from '../../locales/locationManagers/ru.managers';
-import './LocationManagers.css';
+import styles from './LocationManagers.module.css';
 
 // დამფუძნებლები
 const founders = [
@@ -104,6 +105,76 @@ const managers = [
   ...locationManagers
 ];
 
+const Modal = ({ manager, t, onClose, styles }) => {
+  const modalRef = useRef(null);
+  const lastFocused = useRef(null);
+
+  // Close on ESC
+  const handleKey = useCallback((e) => {
+    if (e.key === 'Escape') onClose();
+    if (e.key === 'Tab') {
+      const focusable = modalRef.current?.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!focusable || focusable.length === 0) return;
+      const list = Array.from(focusable);
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, [onClose]);
+
+  useEffect(() => {
+    lastFocused.current = document.activeElement;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKey);
+    // focus close button
+    const closeBtn = modalRef.current?.querySelector('button');
+    closeBtn?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKey);
+      if (lastFocused.current && lastFocused.current.focus) {
+        lastFocused.current.focus();
+      }
+    };
+  }, [handleKey]);
+
+  if (!manager) return null;
+  return createPortal(
+    <div className={styles.modalOverlay} onClick={onClose} role="presentation">
+      <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="lm-modal-name" onClick={e => e.stopPropagation()} ref={modalRef}>
+        <button className={styles.close} onClick={onClose} aria-label={t.close || 'Close'}>×</button>
+        <img src={manager.img} alt={`${manager.name} - ${manager.role}`} className={styles.modalImg} loading="lazy" />
+        <div id="lm-modal-name" className={styles.modalName}>{manager.name}</div>
+        <div className={styles.modalRole}>{manager.role}</div>
+        <div className={styles.field}>
+          <span title={t.age}>
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#888" strokeWidth="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#888" strokeWidth="2"/></svg>
+          </span>
+          <span>{t.age}: {manager.age}</span>
+        </div>
+        {manager.experience && (
+          <div className={styles.field}>
+            <span title={t.experience}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 8v4l3 3" stroke="#888" strokeWidth="2"/><circle cx="12" cy="12" r="10" stroke="#888" strokeWidth="2"/></svg>
+            </span>
+            <span>{t.experience}: {manager.experience}</span>
+          </div>
+        )}
+        {manager.bio && <div className={styles.bio}>{manager.bio}</div>}
+        <div className={styles.field}>
+          <span title={t.phone}>
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#888" strokeWidth="2"/><circle cx="12" cy="18" r="1" fill="#888"/></svg>
+          </span>
+          <a href={`tel:${manager.phone.replace(/\s+/g, '')}`} className={styles.phone}>{t.phone}: {manager.phone}</a>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const LocationManagers = () => {
   const { currentLang } = useLanguage();
   const code = currentLang.code;
@@ -133,79 +204,51 @@ const LocationManagers = () => {
   // მენეჯერების სია მობილურზე
   // თითო სექციისთვის ცალკე ვაჩვენებთ სათაურს და ბარათებს
   const renderSection = (sectionKey, arr) => (
-    <div className="manager-section" key={sectionKey}>
-      <h3 className="manager-section-title">{t[sectionKey]}</h3>
-      <div className="managers-grid">
+    <section className={styles.section} key={sectionKey} aria-labelledby={`lm-${sectionKey}-title`}>
+      <h3 id={`lm-${sectionKey}-title`} className={styles.sectionTitle}>{t[sectionKey]}</h3>
+      <div className={styles.grid}>
         {arr.map((m, i) => {
           const mt = managersT[sectionKey][i];
           return (
-            <div className="manager-card" key={m.phone}>
-              <img 
-                src={m.img} 
-                alt={`${mt.name} - ${mt.role} | ${t.teamTitle}`} 
-                className="manager-img" 
-                loading="lazy"
-              />
-              <div className="manager-info">
-                <div className="manager-name">{mt.name}</div>
-                <div className="manager-role">{mt.role}</div>
-                <div className="manager-desc">{mt.desc}</div>
-                <button 
-                  className="manager-more-btn" 
-                  onClick={() => handleOpenModal({...m, ...mt})}
+            <figure className={styles.card} key={m.phone} tabIndex={0} aria-label={`${mt.name} ${mt.role}`}>
+              <div className={styles.mediaWrap}>
+                <img
+                  src={m.img}
+                  alt={`${mt.name} - ${mt.role}`}
+                  className={styles.img}
+                  loading="lazy"
+                />
+                <div className={styles.ring} aria-hidden="true" />
+              </div>
+              <figcaption className={styles.body}>
+                <div className={styles.name}>{mt.name}</div>
+                <div className={styles.role}>{mt.role}</div>
+                <p className={styles.desc}>{mt.desc}</p>
+                <button
+                  className={styles.btn}
+                  onClick={() => handleOpenModal({ ...m, ...mt })}
                   aria-label={`${mt.name} ${t.more}`}
                 >
-                  {t.more}
+                  <span>{t.more}</span>
                 </button>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 
   return (
-    <div className="location-managers-wrapper">
-      <h2 className="location-managers-title">{t.teamTitle}</h2>
+    <div className={styles.wrapper} data-component="location-managers">
+      <h2 className={styles.title}>{t.teamTitle}</h2>
       {renderSection('founders', founders)}
       {renderSection('mainPartners', mainPartners)}
       {renderSection('eventManagers', eventManagers)}
       {renderSection('mainManagers', mainManagers)}
       {renderSection('locationManagers', locationManagers)}
       {modalOpen && selectedManager && (
-        <div className="manager-modal-overlay" onClick={handleCloseModal}>
-          <div className="manager-modal" onClick={e => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={handleCloseModal}>×</button>
-            <img 
-              src={selectedManager.img} 
-              alt={`${selectedManager.name} - ${selectedManager.role} | ${t.teamTitle}`} 
-              className="manager-modal-img" 
-              loading="lazy"
-            />
-            <div className="manager-modal-name">{selectedManager.name}</div>
-            <div className="manager-modal-role">{selectedManager.role}</div>
-            <div className="manager-modal-field">
-              <span className="manager-modal-icon" title={t.age}>
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#888" strokeWidth="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#888" strokeWidth="2"/></svg>
-              </span>
-              <span>{t.age}: {selectedManager.age}</span>
-            </div>
-            <div className="manager-modal-field">
-              <span className="manager-modal-icon" title={t.experience}>
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 8v4l3 3" stroke="#888" strokeWidth="2"/><circle cx="12" cy="12" r="10" stroke="#888" strokeWidth="2"/></svg>
-              </span>
-              <span>{t.experience}: {selectedManager.experience}</span>
-            </div>
-            <div className="manager-modal-bio">{selectedManager.bio}</div>
-            <div className="manager-modal-field">
-              <span className="manager-modal-icon" title={t.phone}>
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3" stroke="#888" strokeWidth="2"/><circle cx="12" cy="18" r="1" fill="#888"/></svg>
-              </span>
-              <a href={`tel:${selectedManager.phone.replace(/\s+/g, '')}`} className="manager-modal-phone-link">{t.phone}: {selectedManager.phone}</a>
-            </div>
-          </div>
-        </div>
+        <Modal manager={selectedManager} t={t} onClose={handleCloseModal} styles={styles} />
       )}
     </div>
   );
